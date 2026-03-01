@@ -160,9 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mock fallback
             if (!slots) {
                 await new Promise(r => setTimeout(r, 600));
-                const allSlots = ['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM'];
                 const seed = parseInt(state.selectedDate.iso.split('-')[2]);
-                slots = allSlots.filter((_, i) => (i + seed) % 3 !== 0);
+                const tMin = new Date(`${state.selectedDate.iso}T09:00:00-05:00`);
+                const dummySlots = [];
+                let curr = new Date(tMin);
+                for (let i = 0; i < 15; i++) {
+                    dummySlots.push(curr.toISOString());
+                    curr.setTime(curr.getTime() + 30 * 60 * 1000);
+                }
+                slots = dummySlots.filter((_, i) => (i + seed) % 3 !== 0);
             }
 
             renderTimeSlots(slots);
@@ -178,18 +184,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         timeSlots.innerHTML = '';
-        slots.forEach(time => {
+
+        const tzInfo = document.createElement('div');
+        tzInfo.className = 'cal-tz-info';
+        tzInfo.style.gridColumn = '1 / -1';
+        tzInfo.style.fontSize = '0.85rem';
+        tzInfo.style.color = 'var(--text-muted)';
+        tzInfo.style.textAlign = 'center';
+        tzInfo.style.marginBottom = '1rem';
+        const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        tzInfo.textContent = `Times shown in your local timezone: ${localTz.replace(/_/g, ' ')}`;
+        timeSlots.appendChild(tzInfo);
+
+        slots.forEach(isoTime => {
+            const dateObj = new Date(isoTime);
+            const displayTime = dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+            const tzParts = dateObj.toLocaleTimeString('en-US', { timeZoneName: 'short' }).split(' ');
+            const tzAbbr = tzParts[tzParts.length - 1] || '';
+
             const el = document.createElement('div');
             el.className = 'cal-time-slot';
-            el.textContent = time;
+            el.textContent = displayTime;
 
             el.addEventListener('click', () => {
                 timeSlots.querySelectorAll('.cal-time-slot.selected').forEach(s => s.classList.remove('selected'));
                 el.classList.add('selected');
-                state.selectedTime = time;
+                state.selectedTime = isoTime;
 
                 setTimeout(() => {
-                    dtDisplay.textContent = `${state.selectedDate.display} at ${time} EST`;
+                    dtDisplay.textContent = `${state.selectedDate.display} at ${displayTime} ${tzAbbr}`;
                     goToStep(3);
                 }, 200);
             });
@@ -234,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mock fallback
             if (!success) await new Promise(r => setTimeout(r, 1000));
 
-            successDT.textContent = `${state.selectedDate.display} at ${state.selectedTime} EST`;
+            successDT.textContent = `${state.selectedDate.display} at ${new Date(state.selectedTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' })}`;
             goToStep(4);
 
         } catch (err) {

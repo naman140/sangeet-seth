@@ -39,16 +39,23 @@ module.exports = async (req, res) => {
     // If no credentials, gracefully fallback to mock data (useful for frontend dev before backend is fully wired)
     if (!checkAuth()) {
         console.warn("Google credentials missing. Returning mock availability data.");
-        const dummySlots = ['09:00 AM', '09:30 AM', '10:00 AM', '11:30 AM', '01:00 PM', '02:30 PM', '03:00 PM', '04:00 PM'];
+
+        const seed = parseInt(date.split('-')[2]);
+        const tMin = new Date(`${date}T09:00:00-05:00`); // 9 AM EST
+        const dummySlots = [];
+        let curr = new Date(tMin);
+        for (let i = 0; i < 14; i++) { // Generate 14 half-hour slots until 4:00 PM EST
+            dummySlots.push(curr.toISOString());
+            curr.setTime(curr.getTime() + 30 * 60 * 1000);
+        }
 
         // Simulate slight delay and some random missing slots
         await new Promise(r => setTimeout(r, 600));
-        const seed = parseInt(date.split('-')[2]);
         const mockSlots = dummySlots.filter((_, i) => (i + seed) % 3 !== 0);
 
         return res.status(200).json({
             date,
-            timezone: 'America/New_York',
+            timezone: 'UTC', // the payload is in UTC ISO
             slots: mockSlots.length > 0 ? mockSlots : dummySlots.slice(0, 3)
         });
     }
@@ -95,14 +102,7 @@ module.exports = async (req, res) => {
             });
 
             if (!isOverlap) {
-                // Format to 'HH:MM AM/PM'
-                const formatter = new Intl.DateTimeFormat('en-US', {
-                    timeZone: 'America/New_York',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true
-                });
-                availableSlots.push(formatter.format(currentSlot));
+                availableSlots.push(currentSlot.toISOString());
             }
 
             currentSlot.setTime(currentSlot.getTime() + 30 * 60 * 1000);

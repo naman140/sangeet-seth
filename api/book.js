@@ -15,17 +15,7 @@ const getOauth2Client = () => {
     return oauth2Client;
 };
 
-// Parse '09:30 AM' into hours and minutes
-function parseTimeString(timeStr) {
-    const [time, period] = timeStr.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
-
-    if (period === 'PM' && hours !== 12) hours += 12;
-    if (period === 'AM' && hours === 12) hours = 0;
-
-    return { hours, minutes };
-}
-
+// Time parser removed since we now use strictly ISO strings
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
@@ -46,11 +36,12 @@ module.exports = async (req, res) => {
     if (!checkAuth()) {
         console.warn("Google credentials missing. Mocking success response.");
         await new Promise(r => setTimeout(r, 1000));
+        const dtStr = new Date(time).toLocaleString(undefined, { timeZoneName: 'short' });
         return res.status(200).json({
             success: true,
             eventId: 'mock_' + Date.now(),
             meetLink: 'https://meet.google.com/mock-link',
-            datetime: `${date} at ${time} EST`
+            datetime: dtStr
         });
     }
 
@@ -58,14 +49,8 @@ module.exports = async (req, res) => {
         const calendar = google.calendar({ version: 'v3', auth: getOauth2Client() });
         const calendarId = process.env.SANGEET_CALENDAR_ID || 'primary';
 
-        // Construct start/end dates
-        // Assuming EST logic for demo purposes. Best practice is to use moment-timezone or deal with precise offsets
-        const timeInfo = parseTimeString(time);
-
-        // YYYY-MM-DD
-        const startDate = new Date(`${date}T00:00:00-05:00`);
-        startDate.setHours(timeInfo.hours, timeInfo.minutes, 0);
-
+        // Construct start/end dates from the ISO string provided by the frontend
+        const startDate = new Date(time);
         const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
 
         // Double check availability to prevent double booking
@@ -116,12 +101,17 @@ module.exports = async (req, res) => {
                 auth: { user: 'apikey', pass: process.env.SENDGRID_API_KEY }
             });
 
-            const emailBody = `SANGEET — AI AUTOMATION\n\nYour audit is confirmed.\n\nDate: ${date}\nTime: ${time} EST\nDuration: 30 minutes\nMeeting: ${meetLink || 'See calendar invite'}\n\nBefore we meet — bring one thing:\nWrite down the 3 tasks that eat most of your week.\nWe'll work on your actual business, not hypotheticals.\n\nQuestions? Reply to this email.\n\n— Sangeet`;
+            const dtStr = new Date(time).toLocaleString(undefined, {
+                weekday: 'long', month: 'long', day: 'numeric',
+                hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+            });
+
+            const emailBody = `SANGEET — AI AUTOMATION\n\nYour audit is confirmed.\n\nDate & Time: ${dtStr}\nDuration: 30 minutes\nMeeting: ${meetLink || 'See calendar invite'}\n\nBefore we meet — bring one thing:\nWrite down the 3 tasks that eat most of your week.\nWe'll work on your actual business, not hypotheticals.\n\nQuestions? Reply to this email.\n\n— Sangeet`;
 
             await transporter.sendMail({
                 from: `"Sangeet — AI" <${process.env.SANGEET_EMAIL || 'hi@sangeet.ai'}>`,
                 to: email,
-                subject: `Your Automation Audit is Confirmed — ${date} at ${time} EST`,
+                subject: `Your Automation Audit is Confirmed — ${dtStr}`,
                 text: emailBody
             });
         }
@@ -130,7 +120,7 @@ module.exports = async (req, res) => {
             success: true,
             eventId: createdEvent.data.id,
             meetLink: meetLink || '',
-            datetime: `${date} at ${time} EST`
+            datetime: new Date(time).toLocaleString(undefined, { timeZoneName: 'short' })
         });
 
     } catch (err) {
