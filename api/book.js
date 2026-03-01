@@ -11,7 +11,10 @@ const getOauth2Client = () => {
         process.env.GOOGLE_CLIENT_SECRET,
         'https://developers.google.com/oauthplayground'
     );
-    oauth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
+    oauth2Client.setCredentials({
+        refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+        access_token: process.env.GOOGLE_ACCESS_TOKEN
+    });
     return oauth2Client;
 };
 
@@ -74,7 +77,7 @@ module.exports = async (req, res) => {
             description: `Client: ${name}\nEmail: ${email}\nWebsite: ${website || 'N/A'}\nPain Point: ${painPoint}`,
             start: { dateTime: startDate.toISOString(), timeZone: 'America/New_York' },
             end: { dateTime: endDate.toISOString(), timeZone: 'America/New_York' },
-            attendees: [{ email: process.env.SANGEET_EMAIL || calendarId }, { email }],
+            attendees: [{ email }],
             conferenceData: {
                 createRequest: {
                     requestId: `meet_${Date.now()}`,

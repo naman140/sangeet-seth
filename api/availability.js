@@ -17,7 +17,8 @@ const getOauth2Client = () => {
     );
 
     oauth2Client.setCredentials({
-        refresh_token: process.env.GOOGLE_REFRESH_TOKEN
+        refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+        access_token: process.env.GOOGLE_ACCESS_TOKEN
     });
 
     return oauth2Client;
