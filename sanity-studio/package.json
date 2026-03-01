@@ -1,0 +1,25 @@
+{
+  "name": "sangeet-seth-studio",
+  "version": "1.0.0",
+  "description": "Sanity Studio for Sangeet AI Automation",
+  "main": "sanity.config.js",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sanity": "^3.0.0",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^3.0.0",
+    "eslint": "^8.0.0"
+  },
+  "keywords": [],
+  "author": "Sangeet Seth",
+  "license": "ISC"
+}

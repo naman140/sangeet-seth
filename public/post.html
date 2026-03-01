@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post — Sangeet AI Automation</title>
+    <meta name="description"
+        content="Technical breakdowns of AI tools, automation systems, and high-ticket business strategies.">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/components.css">
+    <style>
+        .post-header {
+            padding-top: 160px;
+            padding-bottom: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-meta-top {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--accent-gold);
+            margin-bottom: 24px;
+            letter-spacing: 0.04em;
+        }
+
+        .post-header h1 {
+            font-size: var(--text-4xl);
+            margin-bottom: 24px;
+        }
+
+        .post-hero-image {
+            width: 100%;
+            height: 480px;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            margin-bottom: 64px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .post-content {
+            max-width: 720px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            padding-bottom: 120px;
+        }
+
+        .post-content h2 {
+            color: var(--text-primary);
+            font-size: var(--text-2xl);
+            margin-top: 56px;
+            margin-bottom: 24px;
+        }
+
+        .post-content h3 {
+            color: var(--text-primary);
+            font-size: var(--text-xl);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content a {
+            color: var(--accent-gold);
+            text-decoration: underline;
+            text-decoration-color: rgba(196, 151, 58, 0.4);
+            text-underline-offset: 4px;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-content blockquote {
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 24px;
+            margin: 40px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .post-content img {
+            width: 100%;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Custom Table Styling --- */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 48px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 600px;
+        }
+
+        .custom-table th {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 20px 24px;
+            background: rgba(196, 151, 58, 0.08);
+            /* Sophisticated thin gold wash */
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        .custom-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            transition: all 0.2s ease;
+        }
+
+        /* Support Markdown ✅ and ❌ emojis with better styling */
+        .custom-table td:contains("✓") {
+            color: #10B981;
+            font-weight: bold;
+        }
+
+        .custom-table td:contains("✗") {
+            color: #EF4444;
+            font-weight: bold;
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .custom-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .post-header {
+                padding-top: 120px;
+            }
+
+            .post-hero-image {
+                height: 240px;
+                margin-bottom: 40px;
+            }
+
+            .post-header h1 {
+                font-size: var(--text-3xl);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="logo">Sangeet</a>
+            <div class="nav-links">
+                <a href="/about.html">About</a>
+                <a href="/services.html">Services</a>
+                <a href="/blog.html">Blog</a>
+                <button class="theme-toggle" aria-label="Toggle theme"><span class="icon-moon">☽</span><span
+                        class="icon-sun">☀</span></button>
+                <a href="/book.html" class="btn btn-ghost nav-cta"><span>Book a Call</span></a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="mobile-nav-overlay">
+        <a href="/about.html">About</a>
+        <a href="/services.html">Services</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/book.html" class="btn btn-primary" style="margin-top: 16px;"><span>Book a Call</span></a>
+    </div>
+
+    <div id="post-container" style="display: none;">
+        <header class="post-header container">
+            <div class="post-meta-top" id="post-meta">Loading...</div>
+            <h1 id="post-title">Loading Article...</h1>
+        </header>
+
+        <div class="container" id="hero-wrapper">
+            <div id="post-hero" class="post-hero-image"></div>
+        </div>
+
+        <article class="post-content container" id="post-body">
+            <!-- Dynamic portable text injected here -->
+        </article>
+    </div>
+
+    <div id="loading-state" class="container"
+        style="padding-top: 200px; padding-bottom: 200px; text-align: center; color: var(--text-secondary);">
+        Fetching article from CMS...
+    </div>
+
+    <div id="error-state" class="container"
+        style="display: none; padding-top: 200px; padding-bottom: 200px; text-align: center;">
+        <h2 style="margin-bottom: 24px;">Article Not Found</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 40px;">The link you clicked may be broken or the post has
+            been removed.</p>
+        <a href="/blog.html" class="btn btn-primary"><span>Back to Blog</span></a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <span class="logo" style="font-size: 0.875rem; opacity: 0.4;">Sangeet</span>
+            <p style="font-size: 0.6875rem; font-family: var(--font-mono); opacity: 0.3; margin-top: 12px;">© 2026
+                Sangeet. All Rights Reserved.</p>
+            <div style="margin-top: 16px; display: flex; gap: 16px; justify-content: center; font-size: 0.75rem;">
+                <a href="/privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+                <a href="/terms.html" style="color: var(--text-muted); text-decoration: none;">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+    <script src="/scripts/sanity.js"></script>
+    <script src="/scripts/post.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>

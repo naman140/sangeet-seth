@@ -1,0 +1,16 @@
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Environments
+.env
+
+# MacOS
+.DS_Store
+
+# Sanity Studio
+sanity-studio/node_modules/
+sanity-studio/.sanity/

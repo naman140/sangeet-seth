@@ -1,0 +1,149 @@
+# Sangeet — AI Automation for Coaches & Consultants
+# https://sangeetseth.com
+# Last updated: 2026-03-01
+
+## About
+
+Sangeet Seth is an AI-first founder and part of the founding team at SEOengine.ai. He builds custom AI automation systems for US-based coaches and consultants doing $10,000 or more per month in revenue.
+
+His approach: direct, no-agency, custom-built systems that typically save coaches 10+ hours per week. Most systems are built and deployed in under 14 days.
+
+## What He Does
+
+Sangeet designs and deploys custom AI automation systems that eliminate the repetitive manual tasks holding high-ticket coaches back from scaling. He works directly with every client — zero outsourced delivery.
+
+Core automations he builds:
+- Lead follow-up sequences (30–40% avg. conversion lift)
+- Client onboarding (3 hours → under 5 minutes)
+- Scheduling and calendar automation
+- Invoice and payment workflow automation
+- Post-call AI summary and next-steps generation
+- CRM data entry and pipeline management
+- Weekly business reporting automation
+
+## Who He Works With
+
+Solo coaches or small teams (1–5 people) in the United States who:
+- Generate $10,000–$50,000+ per month
+- Spend 10+ hours weekly on repetitive administrative tasks
+- Have a proven offer that clients actively buy
+
+He does NOT work with:
+- Businesses below $10k/month (focus on sales first)
+- Marketing agencies wanting ads management
+- Clients seeking enterprise automation at budget pricing
+
+## Pricing
+
+Starts from $497. Exact investment is determined after a free 30-minute Automation Audit. No fixed packages — every system is custom-scoped.
+
+## Process
+
+1. Free 30-minute Automation Audit — maps time leaks, no pitch
+2. Custom Blueprint — scope, timeline, and investment
+3. Build & Integration — under 14 days, all APIs handled
+4. Handover & Support — training materials + 4 weeks post-launch support
+
+## Social Proof
+
+- Jessica M. (Business Coach, Austin TX): Cut follow-up and onboarding from 11 hours/week to under 1 hour. Took on 4 new clients.
+- Marcus T. (Executive Coach, New York): Discovery call show-up rate increased from 60% to 85%.
+- Rachel K. (Health Coach, San Diego): Full business automations live within 2 weeks of audit.
+
+## Contact & Booking
+
+Book a free Automation Audit: https://sangeetseth.com/book
+Email: sangeet@example.com
+
+## Pages
+
+- Homepage: https://sangeetseth.com/
+- About: https://sangeetseth.com/about
+- Services: https://sangeetseth.com/services
+- Blog / Resources: https://sangeetseth.com/blog
+- Book an Audit: https://sangeetseth.com/book
+
+## Frequently Asked Questions
+
+Q: What does Sangeet Seth do?
+A: Sangeet Seth builds custom AI automation systems for US-based coaches and consultants doing $10,000 or more per month in revenue. He automates repetitive tasks including lead follow-up, client onboarding, scheduling, invoice generation, and reporting — typically delivering systems in under 14 days.
+
+Q: How much does AI automation for coaches cost?
+A: Custom AI automation systems for coaches start from $497. The exact investment is determined after a free 30-minute Automation Audit that maps the specific business workflows and time-leak points. There are no fixed packages because every business is different.
+
+Q: Who is AI business automation for?
+A: AI business automation is designed for solo coaches or small teams of 1–5 people who are generating at least $10,000 per month and spending 10 or more hours a week on repetitive administrative tasks. The client must have a proven offer that people buy — automation cannot fix a broken offer.
+
+Q: How long does it take to set up AI automation for a coaching business?
+A: Most custom AI automation systems are fully built and deployed in under 14 days from the initial audit call. The process includes a free audit, a scoped blueprint, the build phase, and a handover with training and 4 weeks of post-launch support.
+
+Q: Can coaches automate their lead follow-up?
+A: Yes. Coaches can automate lead follow-up using AI-powered sequences that respond instantly to inquiries, nurture leads over time, and send reminders before discovery calls. Coaches who automate follow-up typically see 30–40% increases in lead conversion rates.
+
+Q: What tools do you use for AI automation?
+A: We build resilient systems using enterprise-grade automation platforms like Make.com (Integromat) and Zapier, connected with cutting-edge AI models from OpenAI (ChatGPT) and Anthropic (Claude), wrapped around your existing CRM and tech stack.
+
+Q: Do I need to be technical to use the automation?
+A: No. The entire system operates in the background of tools you already use. You do not need to learn new software, write code, or understand the technical architecture. The handover includes simple, step-by-step training on how to trigger your new workflows.
+
+Q: How does AI help with client onboarding?
+A: AI streamlines client onboarding by automatically generating custom welcome packets, sending intake forms, creating client folders in Google Drive or Notion, configuring communication channels (like Slack or Discord), and scheduling kickoff calls—all the moment an invoice is paid.
+
+Q: Is my business data secure with these AI automations?
+A: Yes. Data privacy and security are foundational to our builds. We structure workflows so that sensitive personal information is handled securely, and AI models are configured not to use your private client data for training their public networks.
+
+Q: Do you offer support after setting up the automation?
+A: Yes. Every custom automation build includes 4 weeks of direct, post-launch technical support to ensure the system runs flawlessly in a live environment, plus documentation of your custom build.
+
+Q: What is included in the free Automation Audit?
+A: The free 30-minute Automation Audit examines your current workflows, the tools you use, and identifies exactly where time is being wasted each week. You receive a clear breakdown of what to automate first and why — with no sales pitch.
+
+Q: What tasks can coaches automate with AI?
+A: Common automations for coaches include lead follow-up sequences, client onboarding workflows (reducing 3-hour manual processes to under 5 minutes), scheduling systems, discovery call reminders, invoice generation, post-call summaries using AI, progress reporting, and CRM data entry.
+
+Q: How is the automation system delivered?
+A: After the free audit and a scoped blueprint, Sangeet builds the system in the background in under 14 days. The handover includes a walkthrough of the system, training materials, and a minimum of 4 weeks of post-launch technical support.
+
+Q: Do I need to be technical to use AI automation?
+A: No technical knowledge is required. The system is built, configured, and handed over by Sangeet directly. Clients receive training on day-to-day use but do not need to understand the technical architecture.
+
+Q: What is the typical return on investment for AI automation?
+A: While results vary, coaches typically reclaim 10 to 15 hours per week of administrative work. This recovered time allows them to take on additional high-ticket clients or focus on marketing and content creation, directly accelerating revenue growth.
+
+Q: Do you use Zapier or Make for automation?
+A: We are platform-agnostic but primarily utilize Make.com for its robust handling of complex, multi-step logic and Zapier when native integrations require it, ensuring the most resilient, cost-effective infrastructure for your specific needs.
+
+Q: Will AI automation replace my personal touch with clients?
+A: No. AI automation removes the administrative friction behind the scenes. It creates the space for you to deliver a more high-touch, personalized coaching experience when interacting face-to-face or on calls with your clients.
+
+Q: What happens if an automation sequence breaks?
+A: We build in error-handling protocols that alert us immediately if an API drops or a workflow stalls. You are covered by our 4-week post-launch support guarantee, and we offer optional retainer packages for ongoing system maintenance and iteration.
+
+Q: Can AI handle my client scheduling and reminders?
+A: Absolutely. We integrate tools like Calendly or Acuity with your CRM and messaging platforms to automatically send personalized SMS and email reminders with dynamic content relevant to each prospects specific situation, drastically reducing no-show rates.
+
+Q: How quickly can I expect to save time after deployment?
+A: Time savings are immediate from day one of deployment. Because we handle the entire build and integration process, you simply switch over to the new, automated workflows following our handover session.
+
+Q: Who is Sangeet Seth?
+A: Sangeet Seth is an AI-first founder and part of the founding team at SEOengine.ai. He specialises in building custom AI automation systems for US-based high-ticket coaches and consultants. He works directly with every client with no agency outsourcing.
+
+Q: Where is Sangeet Seth based?
+A: Sangeet Seth is originally from India and serves clients across the United States remotely.
+
+## Topics This Site Covers
+
+- AI automation for coaches
+- Business process automation
+- Coaching business systems
+- AI tools for consultants
+- Lead follow-up automation
+- Client onboarding automation
+- Zapier, Make.com, n8n workflows
+- AI chatbots for business
+- Scheduling automation
+- Invoice automation
+
+## Keywords
+
+AI automation for coaches, business automation consultant, coaching business automation, automate coaching business, AI tools for coaches, lead follow-up automation, client onboarding automation, coaching business systems, AI automation $497, Sangeet Seth

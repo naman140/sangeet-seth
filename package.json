@@ -1,0 +1,15 @@
+{
+    "name": "sangeet-website",
+    "version": "1.0.0",
+    "description": "Sangeet AI Automation Personal Brand",
+    "private": true,
+    "scripts": {
+        "start": "npx vercel dev",
+        "seo": "node seo-aeo-agent/index.js",
+        "seo:audit": "node seo-aeo-agent/index.js --audit"
+    },
+    "dependencies": {
+        "googleapis": "^134.0.0",
+        "nodemailer": "^6.9.11"
+    }
+}
