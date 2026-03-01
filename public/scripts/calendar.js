@@ -245,26 +245,25 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            let success = false;
-            try {
-                const res = await fetch('/api/book', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                if (res.ok) success = true;
-            } catch (e) { /* fallback */ }
+            const res = await fetch('/api/book', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
 
-            // Mock fallback
-            if (!success) await new Promise(r => setTimeout(r, 1000));
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || 'Booking failed');
+            }
 
             successDT.textContent = `${state.selectedDate.display} at ${new Date(state.selectedTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' })}`;
             goToStep(4);
 
         } catch (err) {
+            console.error(err);
             submitBtn.innerHTML = origHTML;
             submitBtn.disabled = false;
-            alert('Something went wrong. Please try again.');
+            alert(`Failed to confirm booking: ${err.message}. Please try again later.`);
         }
     });
 
