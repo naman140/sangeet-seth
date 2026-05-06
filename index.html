@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friction-Free OS</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Playfair Display', 'Georgia', 'serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            bg: '#050505',
+            surface: 'rgba(20, 20, 22, 0.6)',
+            'surface-2': 'rgba(30, 30, 34, 0.6)',
+            border: 'rgba(255, 255, 255, 0.1)',
+            'border-strong': 'rgba(255, 255, 255, 0.2)',
+            'text-primary': '#FFFFFF',
+            'text-secondary': '#A1A1AA',
+            'text-tertiary': '#71717A',
+            accent: '#FF5A1F',
+            'accent-hover': '#FF7A4A',
+            'accent-soft': 'rgba(255, 90, 31, 0.15)',
+            'accent-border': 'rgba(255, 90, 31, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Styles & Scripts -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Vapi SDK (loaded dynamically in app.js) -->
+  <script src="app.js" defer></script>
+</head>
+<body class="bg-bg text-text-primary font-body antialiased selection:bg-accent selection:text-white">
+
+  <!-- ==================== NAV ==================== -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-b border-transparent">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20 h-[68px] flex items-center justify-between">
+      
+      <!-- Logo Container (Left) -->
+      <div class="flex-1 flex justify-start">
+        <a href="#" class="font-display font-bold tracking-[-0.03em] text-[22px] text-text-primary">
+          sethz<span class="text-accent">.co</span>
+        </a>
+      </div>
+      
+      <!-- Desktop Links (Center) -->
+      <div class="hidden md:flex flex-1 justify-center items-center gap-8">
+        <a href="#how-it-works" class="text-[15px] text-text-secondary hover:text-white transition-colors">How it works</a>
+        <a href="#results" class="text-[15px] text-text-secondary hover:text-white transition-colors">Results</a>
+        <a href="#about" class="text-[15px] text-text-secondary hover:text-white transition-colors">About</a>
+        <a href="#faq" class="text-[15px] text-text-secondary hover:text-white transition-colors">FAQ</a>
+      </div>
+
+      <!-- Desktop CTA (Right) -->
+      <div class="hidden md:flex flex-1 justify-end">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-sm">Book a free audit →</a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-bg/95 backdrop-blur-lg flex-col p-6">
+    <div class="flex justify-between items-center mb-12">
+      <a href="#" class="font-display font-bold tracking-[-0.03em] text-[22px] text-text-primary">
+        sethz<span class="text-accent">.co</span>
+      </a>
+      <button id="mobile-menu-close" class="p-2 text-white">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="flex flex-col gap-6 text-center mb-12">
+      <a href="#how-it-works" class="text-[20px] font-medium text-text-primary hover:text-accent transition-colors">How it works</a>
+      <a href="#results" class="text-[20px] font-medium text-text-primary hover:text-accent transition-colors">Results</a>
+      <a href="#about" class="text-[20px] font-medium text-text-primary hover:text-accent transition-colors">About</a>
+      <a href="#faq" class="text-[20px] font-medium text-text-primary hover:text-accent transition-colors">FAQ</a>
+    </div>
+    <div class="mt-auto pb-12 flex justify-center">
+      <a href="https://audit.sethz.co" class="btn btn-primary btn-md">Book a free audit →</a>
+    </div>
+  </div>
+
+  <!-- ==================== S01_HERO ==================== -->
+  <section class="parallax-section relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+    
+    <!-- Animated Fire Aurora Background -->
+    <div class="fire-aurora pointer-events-none">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="blob blob-4"></div>
+    </div>
+    
+    <!-- AI Tech Grid Pattern (visible on hover) -->
+    <div class="ai-pattern-overlay"></div>
+    
+    <div class="relative z-10 max-w-[860px] mx-auto pt-[68px]">
+      <!-- Badge -->
+      <div class="reveal" style="transition-delay: 0s;">
+        <span class="glass-panel inline-block text-accent rounded-full px-4 py-1.5 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-8">
+          <span class="relative z-10">5 spots open this month</span>
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="reveal font-display font-bold leading-[1.1] tracking-[-0.02em] mb-6 text-[clamp(2.5rem,5vw,4rem)]" style="transition-delay: 0.1s;">
+        <span class="text-gradient">Experience </span>
+        <span class="text-gradient-accent">+</span>
+        <span class="text-gradient"> AI </span>
+        <span class="text-gradient-accent">=</span>
+        <span class="text-gradient-accent italic drop-shadow-[0_0_15px_rgba(255,90,31,0.5)]"> Superpower.</span><br />
+        <span class="text-gradient drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">You have the first part.</span><br />
+        <span class="text-gradient drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">I build the second.</span>
+      </h1>
+
+      <!-- Subtext (Combined into single paragraph) -->
+      <p class="reveal font-body text-text-secondary max-w-[600px] mx-auto mb-10 leading-[1.65] text-[20px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="transition-delay: 0.2s;">
+        I build custom AI-powered systems for expert-led business owners. Everything built for you. Your systems. Your SOPs. Your voice.
+      </p>
+
+      <!-- CTAs -->
+      <div class="reveal flex flex-col sm:flex-row gap-4 justify-center items-center mb-6" style="transition-delay: 0.3s;">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-lg">Claim your Friction Audit</a>
+        <a href="#how-it-works" class="btn btn-secondary btn-lg glass-panel">See how it works →</a>
+      </div>
+
+      <!-- Scarcity -->
+      <p class="reveal font-body text-text-tertiary text-[14px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="transition-delay: 0.45s;">
+        Only 5 spots available this month. No pitch. No pressure.
+      </p>
+    </div>
+
+    <!-- Scroll chevron -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-slow text-accent/50 z-10">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ==================== S02_MIRROR ==================== -->
+  <section class="relative py-[80px] lg:py-[120px] px-6">
+    <div class="max-w-[640px] mx-auto text-center reveal glass-panel rounded-[32px] p-10 lg:p-16">
+      
+      <span class="inline-block bg-accent-soft text-accent border border-accent-border rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+        Sound familiar?
+      </span>
+
+      <h2 class="font-display font-bold text-text-primary leading-[1.15] tracking-[-0.02em] mb-8 text-[clamp(2rem,4vw,3rem)]">
+        You have built something real.
+      </h2>
+
+      <div class="font-body text-text-secondary leading-[1.75] space-y-5 text-[17px]">
+        <p>Clients who trust you. Work that genuinely changes lives.</p>
+        <p>But between the calls, the content, the onboarding, the follow ups, and the admin. the days disappear.</p>
+        <p>You know AI could help. You just have not had a single hour to actually do anything about it.</p>
+        <p class="font-medium text-white">That is exactly where I come in.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S03_THREEBUCKETS ==================== -->
+  <section class="parallax-section py-[80px] lg:py-[120px] px-6">
+    <div class="parallax-bg" style="background-image: url('images/bg_grid_1778057198367.png')" data-speed="0.2"></div>
+    
+    <div class="relative z-10 max-w-[1200px] mx-auto">
+      
+      <!-- Header -->
+      <div class="text-center mb-14 reveal">
+        <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          <span class="relative z-10">Where your time actually goes</span>
+        </span>
+        <h2 class="font-display font-bold text-gradient leading-[1.15] tracking-[-0.02em] max-w-[700px] mx-auto text-[clamp(2rem,4vw,3rem)]">
+          You are probably doing work right now that should not exist.
+        </h2>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+        
+        <!-- Card 1 -->
+        <div class="reveal tilt-card" style="transition-delay: 0s;">
+          <div class="tilt-content glass-panel rounded-[20px] p-8 flex flex-col h-full">
+            <div class="w-12 h-12 rounded-[14px] flex items-center justify-center mb-5 bg-white/5 border border-white/10 text-text-primary shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h3 class="font-body font-semibold text-white mb-3 text-[24px]">Genius work</h3>
+            <p class="font-body text-text-secondary leading-[1.7] text-[17px]">
+              The coaching. The strategy. The intuition built over decades. Only you can do this. This is where your revenue lives. We build systems that free you to spend more time here.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="reveal tilt-card" style="transition-delay: 0.1s;">
+          <div class="tilt-content glass-panel rounded-[20px] p-8 flex flex-col h-full">
+            <div class="w-12 h-12 rounded-[14px] flex items-center justify-center mb-5 bg-white/5 border border-white/10 text-text-primary shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+            </div>
+            <h3 class="font-body font-semibold text-white mb-3 text-[24px]">Process work</h3>
+            <p class="font-body text-text-secondary leading-[1.7] text-[17px]">
+              The onboarding. The proposals. The content. The follow ups. Follows a pattern every time. We automate this so it runs without you.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 (Accent) -->
+        <div class="reveal tilt-card" style="transition-delay: 0.2s;">
+          <div class="tilt-content glass-panel rounded-[20px] p-8 flex flex-col h-full border-accent/50 shadow-[0_0_30px_rgba(255,90,31,0.15)] relative overflow-hidden">
+            <div class="absolute inset-0 bg-accent/5 opacity-50 pointer-events-none"></div>
+            <div class="w-12 h-12 rounded-[14px] flex items-center justify-center mb-5 bg-accent/20 border border-accent/40 text-accent shadow-[0_0_20px_rgba(255,90,31,0.3)]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <h3 class="font-body font-semibold text-white mb-3 text-[24px]">Friction work</h3>
+            <p class="font-body text-text-secondary leading-[1.7] text-[17px]">
+              The searching. The copy pasting. The re-explaining context. The admin that finds you at 10pm. We eliminate this entirely.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Stat block -->
+      <div class="text-center max-w-[560px] mx-auto reveal glass-panel rounded-full py-4 px-8" style="transition-delay: 0.3s;">
+        <p class="font-body text-text-secondary leading-[1.7] text-[17px]">
+          Most expert-led businesses spend <span class="font-semibold text-white">60% of their week</span> on the bottom two.
+          <span class="font-body font-semibold text-accent ml-2">We give that 60% back to you.</span>
+        </p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==================== S03_5_CTASTRIP ==================== -->
+  <section class="py-10 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-accent/20 via-purple-900/20 to-accent/20 opacity-50"></div>
+    <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
+    
+    <div class="relative z-10 max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 glass-panel rounded-[24px] p-8 lg:p-10">
+      <div>
+        <p class="font-display font-bold text-white leading-[1.2] tracking-[-0.01em] text-[24px]">
+          Curious how much friction is costing you?
+        </p>
+        <p class="font-body text-text-secondary mt-1 text-[17px]">
+          Most people are shocked by the number.
+        </p>
+      </div>
+      <div class="shrink-0">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-md">Claim your Friction Audit →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== S05_HOWITWORKS ==================== -->
+  <section id="how-it-works" class="parallax-section py-[80px] lg:py-[120px] px-6">
+    <div class="parallax-bg" style="background-image: url('images/bg_orbs_1778057218398.png')" data-speed="0.3"></div>
+    
+    <div class="relative z-10 max-w-[1200px] mx-auto">
+      
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          <span class="relative z-10">The process</span>
+        </span>
+        <h2 class="font-display font-bold text-gradient leading-[1.15] tracking-[-0.02em] text-[clamp(2rem,4vw,3rem)]">
+          Here is exactly what working together looks like.
+        </h2>
+      </div>
+
+      <!-- Phases -->
+      <div class="relative">
+        <!-- Connector line -->
+        <div class="reveal hidden lg:block absolute top-[28px] left-0 right-0 h-[2px] bg-white/5" aria-hidden="true" style="transition-delay: 0s;">
+          <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-accent via-purple-500 to-transparent w-full opacity-30"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-4">
+          
+          <!-- Phase 1 -->
+          <div class="reveal tilt-card" style="transition-delay: 0s;">
+            <div class="tilt-content relative flex flex-col pt-12 pb-8 px-6 rounded-[24px] h-full glass-panel border-white/10">
+              <div class="absolute top-0 left-6 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center font-body font-bold text-[16px] z-10 bg-accent text-white shadow-[0_0_15px_rgba(255,90,31,0.5)] border-2 border-bg">1</div>
+              <h3 class="font-body font-semibold text-white mb-3 text-[22px]">The Friction Audit.</h3>
+              <p class="font-body text-text-secondary leading-[1.7] mb-5 flex-1 text-[14px]">
+                We map your entire business operation. Every friction point identified. Every time leak calculated. You receive a prioritised report. Free. No strings.
+              </p>
+              <span class="inline-block self-start font-body font-medium uppercase tracking-[0.05em] rounded-full px-3 py-1 text-[11px] bg-accent/10 text-accent border border-accent/30">
+                FREE. ALWAYS
+              </span>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="reveal tilt-card" style="transition-delay: 0.1s;">
+            <div class="tilt-content relative flex flex-col pt-12 pb-8 px-6 rounded-[24px] h-full glass-panel border-white/10">
+              <div class="absolute top-0 left-6 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center font-body font-bold text-[16px] z-10 bg-surface text-white border-2 border-white/20">2</div>
+              <h3 class="font-body font-semibold text-white mb-3 text-[22px]">The Build.</h3>
+              <p class="font-body text-text-secondary leading-[1.7] mb-5 flex-1 text-[14px]">
+                We build your custom AI-powered systems around how you actually work. Tailored to your workflows, your clients, your voice.
+              </p>
+              <span class="inline-block self-start font-body font-medium uppercase tracking-[0.05em] rounded-full px-3 py-1 text-[11px] bg-white/5 text-text-secondary border border-white/10">
+                SCOPED TO YOUR BUILD
+              </span>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="reveal tilt-card" style="transition-delay: 0.2s;">
+            <div class="tilt-content relative flex flex-col pt-12 pb-8 px-6 rounded-[24px] h-full glass-panel border-white/10">
+              <div class="absolute top-0 left-6 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center font-body font-bold text-[16px] z-10 bg-surface text-white border-2 border-white/20">3</div>
+              <h3 class="font-body font-semibold text-white mb-3 text-[22px]">The Support.</h3>
+              <p class="font-body text-text-secondary leading-[1.7] mb-5 flex-1 text-[14px]">
+                30 days of dedicated support included. Every edge case handled. Every question answered. Nothing left half-finished.
+              </p>
+              <span class="inline-block self-start font-body font-medium uppercase tracking-[0.05em] rounded-full px-3 py-1 text-[11px] bg-white/5 text-text-secondary border border-white/10">
+                30 DAYS INCLUDED
+              </span>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="reveal tilt-card" style="transition-delay: 0.3s;">
+            <div class="tilt-content relative flex flex-col pt-12 pb-8 px-6 rounded-[24px] h-full glass-panel border-white/10">
+              <div class="absolute top-0 left-6 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center font-body font-bold text-[16px] z-10 bg-surface text-white border-2 border-white/20">4</div>
+              <h3 class="font-body font-semibold text-white mb-3 text-[22px]">The Handover.</h3>
+              <p class="font-body text-text-secondary leading-[1.7] mb-5 flex-1 text-[14px]">
+                Full training for you and your team. Recorded walkthroughs. Written SOPs built to train current and future employees. You own everything.
+              </p>
+              <span class="inline-block self-start font-body font-medium uppercase tracking-[0.05em] rounded-full px-3 py-1 text-[11px] bg-white/5 text-text-secondary border border-white/10">
+                YOU OWN EVERYTHING
+              </span>
+            </div>
+          </div>
+
+          <!-- Phase 5 (Inner Circle) -->
+          <div class="reveal tilt-card" style="transition-delay: 0.4s;">
+            <div class="tilt-content relative flex flex-col pt-12 pb-8 px-6 rounded-[24px] h-full glass-panel border border-dashed border-white/20 opacity-70">
+              <div class="absolute top-0 left-6 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center font-body font-bold text-[16px] z-10 bg-bg text-text-tertiary border border-dashed border-white/20">5</div>
+              <h3 class="font-body font-semibold text-white mb-3 text-[22px]">The Inner Circle.</h3>
+              <p class="font-body text-text-secondary leading-[1.7] mb-5 flex-1 text-[14px]">
+                By invitation only. For select clients who want to stay ahead permanently. Details shared on request.
+              </p>
+              <span class="inline-block self-start font-body font-medium uppercase tracking-[0.05em] rounded-full px-3 py-1 text-[11px] bg-transparent text-text-tertiary border border-dashed border-white/20">
+                INVITATION ONLY
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-16 reveal" style="transition-delay: 0.5s;">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-lg">Claim your Friction Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S05_5_FRICTIONAUDIT ==================== -->
+  <section id="friction-audit" class="py-[80px] lg:py-[120px] px-6 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface/30 pointer-events-none"></div>
+    <div class="relative z-10 max-w-[1200px] mx-auto glass-panel rounded-[40px] p-10 lg:p-16 border-white/5">
+      
+      <!-- Header -->
+      <div class="mb-14 reveal">
+        <span class="inline-block bg-accent/10 text-accent border border-accent/30 rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          The diagnostic
+        </span>
+        <h2 class="font-display font-bold text-gradient leading-[1.1] tracking-[-0.02em] mb-4 text-[clamp(2rem,4vw,3rem)]">
+          The Friction Audit.
+        </h2>
+        <p class="font-body text-text-secondary max-w-[560px] text-[20px]">
+          45 minutes. A full map of where your time is bleeding. Yours to keep. No strings attached.
+        </p>
+      </div>
+
+      <!-- Two column -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-14">
+        
+        <!-- Left — What happens -->
+        <div class="reveal">
+          <h3 class="font-body font-semibold text-white mb-5 text-[24px]">What happens</h3>
+          <p class="font-body text-text-secondary leading-[1.75] mb-6 text-[17px]">
+            We spend 45 minutes mapping your entire operation across 10 business stages. Every repetitive task. Every manual process. Every moment you spend doing work that should not exist.
+          </p>
+          <p class="font-body text-text-secondary leading-[1.75] mb-6 text-[17px]">
+            We calculate a Friction Score for each area using a simple formula: time lost multiplied by pain multiplied by automation potential.
+          </p>
+          <p class="font-body font-medium text-white mb-5 text-[17px]">
+            You receive a prioritised report within 48 hours showing:
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-4 p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="mt-[6px] w-2 h-2 rounded-full flex-shrink-0 bg-accent shadow-[0_0_8px_rgba(255,90,31,0.8)]" aria-hidden="true"></span>
+              <span class="font-body text-text-secondary leading-[1.7] text-[16px]">Your top 5 highest-cost friction points</span>
+            </li>
+            <li class="flex items-start gap-4 p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="mt-[6px] w-2 h-2 rounded-full flex-shrink-0 bg-accent shadow-[0_0_8px_rgba(255,90,31,0.8)]" aria-hidden="true"></span>
+              <span class="font-body text-text-secondary leading-[1.7] text-[16px]">Exactly how many hours each one is costing you weekly</span>
+            </li>
+            <li class="flex items-start gap-4 p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="mt-[6px] w-2 h-2 rounded-full flex-shrink-0 bg-accent shadow-[0_0_8px_rgba(255,90,31,0.8)]" aria-hidden="true"></span>
+              <span class="font-body text-text-secondary leading-[1.7] text-[16px]">What it translates to in dollars annually</span>
+            </li>
+            <li class="flex items-start gap-4 p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="mt-[6px] w-2 h-2 rounded-full flex-shrink-0 bg-accent shadow-[0_0_8px_rgba(255,90,31,0.8)]" aria-hidden="true"></span>
+              <span class="font-body text-text-secondary leading-[1.7] text-[16px]">Which ones can be eliminated immediately</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right — What it is not -->
+        <div class="reveal" style="transition-delay: 0.15s;">
+          <h3 class="font-body font-semibold text-white mb-5 text-[24px]">What it is not</h3>
+          <div class="space-y-4 mb-8">
+            <p class="font-body text-text-secondary leading-[1.7] text-[17px] flex items-center gap-3"><span class="text-white/20">×</span> This is not a sales call.</p>
+            <p class="font-body text-text-secondary leading-[1.7] text-[17px] flex items-center gap-3"><span class="text-white/20">×</span> This is not a pitch.</p>
+            <p class="font-body text-text-secondary leading-[1.7] text-[17px] flex items-center gap-3"><span class="text-white/20">×</span> This is not a discovery call designed to pressure you.</p>
+          </div>
+          <p class="font-body text-text-secondary leading-[1.75] text-[17px] p-5 rounded-xl bg-gradient-to-r from-accent/10 to-transparent border-l-2 border-accent">
+            If there is nothing worth building, I will tell you honestly. The report is yours to keep either way.
+          </p>
+
+          <!-- Nicole quote -->
+          <blockquote class="mt-10 relative">
+            <div class="absolute -top-4 -left-2 text-[60px] text-accent/20 font-display font-bold leading-none">"</div>
+            <p class="relative z-10 font-display font-bold italic text-white leading-[1.4] mb-3 text-[24px]">
+              It was worth every minute of the 45 we spent together.
+            </p>
+            <cite class="relative z-10 not-italic font-body text-text-tertiary block text-[14px] uppercase tracking-widest">
+              — Nicole
+            </cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-8 border-t border-white/10" style="transition-delay: 0.2s;">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-lg">Claim your Friction Audit</a>
+        <span class="font-body text-text-tertiary text-[14px] flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          5 spots available this month.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S06_TENSTAGES ==================== -->
+  <section id="coverage" class="py-[80px] lg:py-[120px] px-6">
+    <div class="max-w-[1200px] mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          <span class="relative z-10">Full coverage</span>
+        </span>
+        <h2 class="font-display font-bold text-gradient leading-[1.15] tracking-[-0.02em] mb-4 text-[clamp(2rem,4vw,3rem)]">
+          Every part of your business. Covered.
+        </h2>
+        <p class="font-body text-text-secondary max-w-[480px] mx-auto text-[17px]">
+          Most AI services fix one thing. We map everything.
+        </p>
+      </div>
+
+      <!-- Grid Layout for 10 Stages -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+        <!-- Stage Item -->
+        <div class="reveal tilt-card" style="transition-delay: 0s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Attract</h3>
+            <p class="font-body text-text-secondary text-[13px]">Content & visibility</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.05s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Capture</h3>
+            <p class="font-body text-text-secondary text-[13px]">Lead & enquiry</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.1s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Qualify</h3>
+            <p class="font-body text-text-secondary text-[13px]">Filter & score</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.15s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Sell</h3>
+            <p class="font-body text-text-secondary text-[13px]">Proposals & closing</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.2s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Onboard</h3>
+            <p class="font-body text-text-secondary text-[13px]">Client welcome</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.25s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Deliver</h3>
+            <p class="font-body text-text-secondary text-[13px]">Sessions & intel</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.3s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Follow Up</h3>
+            <p class="font-body text-text-secondary text-[13px]">Between-session care</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.35s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Complete</h3>
+            <p class="font-body text-text-secondary text-[13px]">Results & testimonials</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.4s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Retain</h3>
+            <p class="font-body text-text-secondary text-[13px]">Referrals & re-engage</p>
+          </div>
+        </div>
+        <div class="reveal tilt-card" style="transition-delay: 0.45s;">
+          <div class="tilt-content glass-panel rounded-[16px] p-6 text-center border-white/5 hover:border-accent/50 hover:bg-accent/5 transition-colors h-full flex flex-col items-center justify-center">
+            <h3 class="font-body font-semibold text-white mb-2 text-[18px]">Content</h3>
+            <p class="font-body text-text-secondary text-[13px]">Repurpose & distribute</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center reveal" style="transition-delay: 0.5s;">
+        <p class="font-body text-text-secondary max-w-[560px] mx-auto text-[17px] p-4 glass-panel rounded-full inline-block">
+          If friction exists anywhere in these 10 stages, <span class="text-white font-medium">we find it and fix it.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S07_ONETOOLPROMISE ==================== -->
+  <section id="one-tool" class="py-[80px] lg:py-[120px] px-6 bg-surface/30">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Visual -->
+        <div class="reveal">
+          <div class="glass-panel rounded-[40px] p-10 flex flex-col items-center justify-center gap-6 border-white/10 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent"></div>
+            
+            <!-- AI Core -->
+            <div class="w-24 h-24 rounded-full bg-accent text-white flex flex-col items-center justify-center shadow-[0_0_40px_rgba(255,90,31,0.5)] z-10 relative mb-4">
+              <span class="font-body font-bold text-[18px]">AI</span>
+              <span class="font-body font-bold text-[14px]">Core</span>
+              
+              <!-- Connection Lines (CSS generated) -->
+              <div class="absolute inset-0 border border-white/20 rounded-full animate-ping opacity-20"></div>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="grid grid-cols-4 gap-4 z-10 w-full relative">
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">Notion</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">Drive</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">Airtable</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">Zoom</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">Gmail</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">Calendly</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-text-secondary text-[12px] font-medium">ClickUp</span></div>
+              <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center"><span class="text-accent text-[12px] font-bold">+ More</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Copy -->
+        <div class="reveal" style="transition-delay: 0.15s;">
+          <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+            <span class="relative z-10">Your tools. Your processes.</span>
+          </span>
+          <h2 class="font-display font-bold text-gradient leading-[1.15] tracking-[-0.02em] mb-6 mt-2 text-[clamp(2rem,4vw,3rem)]">
+            One brain. Every tool you already use.
+          </h2>
+          <div class="font-body text-text-secondary leading-[1.75] space-y-4 text-[17px]">
+            <p class="text-white font-medium">You do not need to replace anything.</p>
+            <p>
+              Airtable, Notion, Google Drive, your CRM, your email, your calendar.
+              Whatever you already have, we connect it all.
+              One intelligent center that makes your entire stack finally work together.
+            </p>
+            <p>
+              No new software to learn. No platforms to abandon.
+              Just everything you already have, working smarter.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S07_5_CTASTRIP2 ==================== -->
+  <section class="py-10 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-accent/20 via-purple-900/20 to-accent/20 opacity-50"></div>
+    <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
+    
+    <div class="relative z-10 max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 glass-panel rounded-[24px] p-8 lg:p-10">
+      <div>
+        <p class="font-display font-bold text-white leading-[1.2] tracking-[-0.01em] text-[24px]">
+          Ready to see where your time is going?
+        </p>
+        <p class="font-body text-text-secondary mt-1 text-[17px]">
+          Book a 45-minute mapping session. Yours to keep.
+        </p>
+      </div>
+      <div class="shrink-0">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-md">Claim your Friction Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S08_PROOF ==================== -->
+  <section id="results" class="py-[80px] lg:py-[120px] px-6">
+    <div class="max-w-[1200px] mx-auto">
+      
+      <!-- Header -->
+      <div class="mb-12 reveal">
+        <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          <span class="relative z-10">Results</span>
+        </span>
+        <h2 class="font-display font-bold text-gradient leading-[1.15] tracking-[-0.02em] text-[clamp(2rem,4vw,3rem)]">
+          Real businesses. Real time recovered.
+        </h2>
+      </div>
+
+      <!-- Lori Card -->
+      <div class="reveal tilt-card mb-8">
+        <div class="tilt-content glass-panel rounded-[32px] overflow-hidden border-white/10 relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none"></div>
+          
+          <!-- Top Bar -->
+          <div class="px-8 py-4 flex items-center justify-between flex-wrap gap-3 border-b border-white/10 bg-white/5 relative z-10">
+            <div>
+              <span class="font-body font-semibold text-white text-[17px]">Lori Young</span>
+              <span class="font-body text-text-tertiary ml-2 text-[14px]">On A Mission Brands</span>
+            </div>
+            <span class="inline-block bg-accent/10 text-accent border border-accent/30 rounded-full px-3 py-1 font-body font-medium uppercase tracking-[0.06em] text-[12px]">
+              OFFER STRATEGY CONSULTANT. 20 YEARS OF EXPERTISE.
+            </span>
+          </div>
+
+          <!-- Body -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/10 relative z-10">
+            <div class="p-8 lg:p-10">
+              <p class="font-body font-semibold text-text-tertiary uppercase tracking-[0.08em] mb-4 text-[12px]">Before</p>
+              <div class="font-body text-text-secondary leading-[1.75] space-y-3 text-[17px]">
+                <p>Every content asset started from a blank page.</p>
+                <p>Every podcast episode took hours before recording even began.</p>
+                <p>Her expertise had no system to move it forward.</p>
+              </div>
+            </div>
+            <div class="p-8 lg:p-10">
+              <p class="font-body font-semibold text-accent uppercase tracking-[0.08em] mb-4 text-[12px]">After</p>
+              <div class="font-body text-text-secondary leading-[1.75] space-y-3 text-[17px]">
+                <p class="text-white">One podcast episode now produces seven publish-ready assets. Automatically. In her voice.</p>
+                <p>A seven-agent offer system built around how she actually thinks. Offer strategy. Messaging. Launch. Sales page. All of it.</p>
+              </div>
+              <div class="mt-6 flex flex-col sm:flex-row gap-6">
+                <div class="flex items-center gap-3">
+                  <span class="font-display font-bold text-gradient-accent text-[48px] leading-none">15+</span>
+                  <span class="font-body text-text-secondary text-[15px] leading-[1.3] w-[110px]">hours recovered every week</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="font-display font-bold text-gradient-accent text-[48px] leading-none">7</span>
+                  <span class="font-body text-text-secondary text-[15px] leading-[1.3] w-[120px]">assets from every single episode</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote -->
+          <div class="px-8 py-7 lg:px-10 border-t border-white/10 bg-white/5 relative z-10">
+            <blockquote class="pl-6 border-l-[3px] border-accent">
+              <p class="font-display font-bold italic text-white leading-[1.45] mb-3 text-[24px]">
+                "Results this real take a moment to put into words. Lori's are on their way."
+              </p>
+              <cite class="not-italic font-body text-text-tertiary text-[14px]">
+                Lori Young, On A Mission Brands
+              </cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shivam + Nicole -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="reveal tilt-card" style="transition-delay: 0.1s;">
+          <div class="tilt-content glass-panel rounded-[32px] p-8 h-full flex flex-col border-white/10">
+            <div class="mb-5">
+              <p class="font-body font-semibold text-white text-[17px]">Shivam Seth</p>
+              <p class="font-body text-text-tertiary text-[14px]">Superscalz. Growth consultant.</p>
+            </div>
+            <p class="font-body text-text-secondary leading-[1.7] mb-4 text-[17px]">
+              Five systems built across a growth consulting practice.
+            </p>
+            <div class="font-body text-text-tertiary leading-[1.7] space-y-2 text-sm mb-5">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>CRO audit tool</div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>UGC content workflow</div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>LinkedIn content system</div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Ad audit and research tool</div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Meta ad creative workflow</div>
+            </div>
+            <p class="font-body text-white font-medium mt-auto leading-[1.7] text-[17px]">
+              Client audits faster. Content without blank pages. Ad research automated.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal tilt-card" style="transition-delay: 0.2s;">
+          <div class="tilt-content glass-panel rounded-[32px] p-8 h-full flex flex-col justify-center border-white/10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl"></div>
+            <blockquote class="pl-6 border-l-[3px] border-accent relative z-10">
+              <p class="font-display font-bold italic text-white leading-[1.45] mb-4 text-[24px]">
+                "It was worth every minute of the 45 we spent together."
+              </p>
+              <cite class="not-italic font-body text-text-tertiary text-[14px] uppercase tracking-wider">
+                Nicole
+              </cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== S09_INNERCIRCLE ==================== -->
+  <section class="py-[80px] lg:py-[120px] px-6 relative overflow-hidden border-y border-white/5">
+    <div class="absolute inset-0 bg-black pointer-events-none z-0"></div>
+    <div class="max-w-[760px] mx-auto text-center relative z-10">
+      <div class="reveal">
+        <span class="inline-block bg-white/5 text-text-secondary border border-white/10 rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          The inner circle
+        </span>
+        <h2 class="font-display font-bold leading-[1.15] tracking-[-0.02em] mb-8 mt-2 text-[clamp(2rem,4vw,3rem)] text-white">
+          Some clients never really leave.
+        </h2>
+        <div class="font-body leading-[1.8] space-y-5 text-[17px] text-text-secondary">
+          <p>
+            Every week, new AI developments, tools, and strategies are curated specifically for expert-led businesses like yours.
+          </p>
+          <p>
+            Your systems are reviewed and updated as the world evolves. Done-for-you resources dropped directly into your hands. No research required. No hours lost trying to keep up.
+          </p>
+          <p class="text-white font-medium">
+            You stay ahead permanently without lifting a finger.
+          </p>
+        </div>
+        <p class="font-body mt-10 text-[14px] text-text-tertiary">
+          Available by invitation only after delivery. Details shared on request.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S10_ABOUT ==================== -->
+  <section id="about" class="py-[80px] lg:py-[120px] px-6">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-14 lg:gap-20 items-start">
+        
+        <!-- Photo -->
+        <div class="reveal flex justify-center lg:justify-start">
+          <div class="w-[240px] lg:w-[280px] aspect-[9/16] rounded-[24px] flex-shrink-0 border-[3px] border-accent shadow-[0_0_30px_rgba(255,90,31,0.3)] bg-surface-2 overflow-hidden relative group">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-purple-900/20 mix-blend-overlay group-hover:opacity-50 transition-opacity z-10"></div>
+            <img src="images/shivam-seth.jpg" alt="Sangeet Seth" class="w-full h-full object-cover relative z-0">
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="reveal" style="transition-delay: 0.15s;">
+          <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+            <span class="relative z-10">Who builds this</span>
+          </span>
+          <h2 class="font-display font-bold text-white leading-[1.15] tracking-[-0.02em] mb-7 mt-2 text-[clamp(2rem,4vw,3rem)]">
+            Most AI people know tools.<br />
+            <span class="text-gradient-accent">I know business.</span>
+          </h2>
+          <div class="font-body text-text-secondary leading-[1.75] space-y-5 mb-8 text-[17px] max-w-[560px]">
+            <p>
+              I have run a marketing agency. Worked with top AI companies and founders. Created content. Run ads. Worked in coaching and consulting. Started businesses from an early age.
+            </p>
+            <p>
+              I have lived inside the same operational chaos that expert-led business owners face every single day.
+            </p>
+            <p class="font-medium text-white border-l-2 border-accent pl-4 py-1">
+              That is not a credential. That is a perspective.
+            </p>
+            <p>
+              When I look at your business I do not just see workflows to automate. I see the whole picture. What is actually costing you. What is worth fixing. What will compound over time.
+            </p>
+          </div>
+          <p class="font-display font-bold text-white mb-2 text-[24px]">
+            Jack of all trades. Master of systems.
+          </p>
+          <p class="font-body text-text-secondary leading-[1.7] mb-8 text-[17px] max-w-[500px]">
+            When you have built things yourself you know exactly what breaks and why. That is what you are getting when you work with me.
+          </p>
+          <p class="font-body font-medium text-text-tertiary text-[14px]">
+            Sangeet Seth. AI Systems Builder. sethz.co
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S11_FAQ ==================== -->
+  <section id="faq" class="py-[80px] lg:py-[120px] px-6 bg-surface/30">
+    <div class="max-w-[760px] mx-auto">
+      
+      <div class="text-center mb-14 reveal">
+        <span class="glass-panel inline-block text-accent rounded-full px-3 py-1 text-[12px] font-medium font-body uppercase tracking-[0.08em] mb-5">
+          <span class="relative z-10">Questions</span>
+        </span>
+        <h2 class="font-display font-bold text-gradient leading-[1.15] tracking-[-0.02em] mt-2 text-[clamp(2rem,4vw,3rem)]">
+          Everything you are probably wondering.
+        </h2>
+      </div>
+
+      <div class="mb-14">
+        <!-- FAQ Item 1 -->
+        <div class="border-b border-white/10">
+          <button class="faq-button w-full py-6 flex items-center justify-between text-left gap-6 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="faq-ans-1">
+            <span class="font-body font-medium text-white leading-[1.4] text-[18px]">Do I need any technical knowledge?</span>
+            <div class="faq-icon flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-surface-2 text-text-tertiary transition-all duration-300">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"></line><line x1="2" y1="7" x2="12" y2="7"></line></svg>
+            </div>
+          </button>
+          <div id="faq-ans-1" class="overflow-hidden h-0 opacity-0 transition-all duration-300">
+            <p class="pb-7 font-body text-text-secondary leading-[1.7] text-[17px]">
+              Zero. You never touch a tool, attend a training, or learn anything new. We handle everything from build to handover.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="border-b border-white/10">
+          <button class="faq-button w-full py-6 flex items-center justify-between text-left gap-6 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="faq-ans-2">
+            <span class="font-body font-medium text-white leading-[1.4] text-[18px]">How long does it take?</span>
+            <div class="faq-icon flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-surface-2 text-text-tertiary transition-all duration-300">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"></line><line x1="2" y1="7" x2="12" y2="7"></line></svg>
+            </div>
+          </button>
+          <div id="faq-ans-2" class="overflow-hidden h-0 opacity-0 transition-all duration-300">
+            <p class="pb-7 font-body text-text-secondary leading-[1.7] text-[17px]">
+              Delivery is scoped to the work. 30 days of support included after that.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="border-b border-white/10">
+          <button class="faq-button w-full py-6 flex items-center justify-between text-left gap-6 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="faq-ans-3">
+            <span class="font-body font-medium text-white leading-[1.4] text-[18px]">Will this work for my specific business?</span>
+            <div class="faq-icon flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-surface-2 text-text-tertiary transition-all duration-300">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"></line><line x1="2" y1="7" x2="12" y2="7"></line></svg>
+            </div>
+          </button>
+          <div id="faq-ans-3" class="overflow-hidden h-0 opacity-0 transition-all duration-300">
+            <p class="pb-7 font-body text-text-secondary leading-[1.7] text-[17px]">
+              That is exactly what the free Friction Audit finds out. If there is nothing worth building we will tell you honestly. No pitch. No pressure.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="border-b border-white/10">
+          <button class="faq-button w-full py-6 flex items-center justify-between text-left gap-6 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="faq-ans-4">
+            <span class="font-body font-medium text-white leading-[1.4] text-[18px]">Will I have to change how I work?</span>
+            <div class="faq-icon flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-surface-2 text-text-tertiary transition-all duration-300">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"></line><line x1="2" y1="7" x2="12" y2="7"></line></svg>
+            </div>
+          </button>
+          <div id="faq-ans-4" class="overflow-hidden h-0 opacity-0 transition-all duration-300">
+            <p class="pb-7 font-body text-text-secondary leading-[1.7] text-[17px]">
+              Not at all. We build around how you already work. Same tools. Same processes. Just everything running smoother and faster without you doing the manual parts.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="border-b border-white/10">
+          <button class="faq-button w-full py-6 flex items-center justify-between text-left gap-6 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="faq-ans-5">
+            <span class="font-body font-medium text-white leading-[1.4] text-[18px]">What does it cost?</span>
+            <div class="faq-icon flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-surface-2 text-text-tertiary transition-all duration-300">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"></line><line x1="2" y1="7" x2="12" y2="7"></line></svg>
+            </div>
+          </button>
+          <div id="faq-ans-5" class="overflow-hidden h-0 opacity-0 transition-all duration-300">
+            <p class="pb-7 font-body text-text-secondary leading-[1.7] text-[17px]">
+              Every engagement is scoped based on your specific audit findings. Investment details are shared as part of your personalised proposal after the free Friction Audit. Most clients tell us the number surprised them in a good way.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="border-b border-white/10">
+          <button class="faq-button w-full py-6 flex items-center justify-between text-left gap-6 rounded-sm focus:outline-none" aria-expanded="false" aria-controls="faq-ans-6">
+            <span class="font-body font-medium text-white leading-[1.4] text-[18px]">What happens after delivery?</span>
+            <div class="faq-icon flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-surface-2 text-text-tertiary transition-all duration-300">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"></line><line x1="2" y1="7" x2="12" y2="7"></line></svg>
+            </div>
+          </button>
+          <div id="faq-ans-6" class="overflow-hidden h-0 opacity-0 transition-all duration-300">
+            <p class="pb-7 font-body text-text-secondary leading-[1.7] text-[17px]">
+              You own everything completely. Your systems. Your SOPs. Your team trained to run it all. For select clients we offer an ongoing partnership to keep everything current. Details shared on request.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center reveal">
+        <p class="font-body font-medium text-white mb-6 text-[18px]">
+          Still have questions? Let's talk.
+        </p>
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-lg">Book a free audit call</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== S12_FINALCTA ==================== -->
+  <section class="py-[80px] lg:py-[120px] px-6 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,90,31,0.15)_0%,_rgba(0,0,0,1)_100%)] pointer-events-none z-0"></div>
+    <div class="max-w-[720px] mx-auto relative z-10">
+      <div class="reveal">
+        <h2 class="font-display font-bold text-white leading-[1.15] tracking-[-0.02em] mb-5 text-[clamp(2rem,4vw,3rem)]">
+          You have spent years becoming exceptional.
+        </h2>
+        <p class="font-body font-medium mb-8 text-[20px] text-gradient-accent drop-shadow-[0_0_10px_rgba(255,90,31,0.3)]">
+          AI should not be the thing that slows you down.
+        </p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <p class="font-body text-text-secondary leading-[1.75] mb-10 max-w-[540px] mx-auto text-[17px]">
+          Every month I open 5 spots for a complimentary Friction Audit.
+          45 minutes. A full map of where your time is bleeding.
+          Yours to keep. No strings.
+        </p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s;">
+        <a href="https://audit.sethz.co" class="btn btn-primary btn-lg hover:scale-105 transition-transform">Claim your Friction Audit</a>
+        <div class="mt-6">
+          <span class="inline-block bg-accent/10 text-accent border border-accent/30 rounded-full px-4 py-1.5 font-body font-medium uppercase tracking-[0.06em] text-[12px]">
+            Only 5 spots available this month.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="py-12 px-6 border-t border-white/5 bg-bg text-center relative z-10">
+    <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="font-display font-bold tracking-[-0.03em] text-[20px] text-white">
+        sethz<span class="text-accent">.co</span>
+      </div>
+      <div class="font-body text-[14px] text-text-tertiary">
+        &copy; 2026 sethz.co. All rights reserved.
+      </div>
+      <div class="flex gap-6">
+        <a href="https://linkedin.com" target="_blank" class="text-text-tertiary hover:text-white transition-colors">LinkedIn</a>
+        <a href="mailto:hello@sethz.co" class="text-text-tertiary hover:text-white transition-colors">Email</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
