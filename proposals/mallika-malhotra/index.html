@@ -1,0 +1,957 @@
+< !DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>A Proposal for Mallika,
+sethz.co</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet"><style> :root {
+    --orange: #e8501a;
+    --orange-light: #f07040;
+    --orange-pale: #fff0ea;
+    --accent: #c94010;
+    --dark: #18120a;
+    --gray: #5a5550;
+    --light-gray: #999;
+    --bg: #fdf8f5;
+    --white: #ffffff;
+    --card-border: rgba(232, 80, 26, 0.13);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(253, 248, 245, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(232, 80, 26, 0.08);
+}
+
+.nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+.nav-logo span {
+    color: var(--orange);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 0.73rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--orange);
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 9rem 2rem 7rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 55% at 15% 20%, rgba(232, 80, 26, 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 85% 85%, rgba(201, 64, 16, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(240, 112, 64, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(232, 80, 26, 0.1) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: rgba(232, 80, 26, 0.09);
+    border: 1px solid rgba(232, 80, 26, 0.2);
+    color: var(--orange);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    margin-bottom: 2.5rem;
+    position: relative;
+    animation: fadeUp 0.6s ease both;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(3.6rem, 8.5vw, 7.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--dark);
+    position: relative;
+    animation: fadeUp 0.7s 0.1s ease both;
+    max-width: 900px;
+}
+
+.hero h1 .accent {
+    color: var(--orange);
+}
+
+.hero-for {
+    font-family: 'Dancing Script', cursive;
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    color: var(--orange);
+    margin: 1.3rem 0 2rem;
+    position: relative;
+    animation: fadeUp 0.7s 0.2s ease both;
+    letter-spacing: 0.01em;
+}
+
+.hero-for .underline-name {
+    display: inline-block;
+    position: relative;
+}
+
+.hero-for .underline-name svg {
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -10px;
+    width: calc(100% + 4px);
+    height: 12px;
+    overflow: visible;
+}
+
+.hero-sub {
+    font-size: 1rem;
+    color: var(--gray);
+    max-width: 490px;
+    line-height: 1.78;
+    position: relative;
+    animation: fadeUp 0.7s 0.3s ease both;
+    margin-bottom: 2.8rem;
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    animation: fadeUp 0.7s 0.4s ease both;
+}
+
+/* scroll indicator */
+.hero-scroll {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    pointer-events: none;
+    animation: fadeUp 1s 0.9s ease both;
+    z-index: 1;
+}
+
+.hero-scroll span {
+    font-size: 0.63rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+}
+
+.hero-scroll-line {
+    width: 1px;
+    height: 30px;
+    background: linear-gradient(to bottom, var(--orange), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: scaleY(0.65);
+    }
+}
+
+/* BUTTONS */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--orange);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.95rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.25s;
+    letter-spacing: 0.01em;
+}
+
+.btn-primary:hover {
+    background: var(--orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(232, 80, 26, 0.28);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--dark);
+    border: 1.5px solid rgba(26, 18, 10, 0.18);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding: 0.95rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.btn-secondary:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+/* DIVIDER */
+.full-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(232, 80, 26, 0.14), transparent);
+}
+
+/* SECTION WRAPPER */
+.section-wrap {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(232, 80, 26, 0.22);
+    padding: 0.35rem 0.9rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    line-height: 1.04;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.022em;
+}
+
+.section-title .accent {
+    color: var(--orange);
+}
+
+.section-title em {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.section-sub {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 570px;
+    margin-bottom: 2.8rem;
+    font-weight: 300;
+}
+
+/* SNAPSHOT GRID */
+.snapshot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 2rem;
+}
+
+.snap-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.snap-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(232, 80, 26, 0.07);
+}
+
+.snap-card.full {
+    grid-column: 1 / -1;
+}
+
+.snap-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.75rem;
+}
+
+.snap-card p {
+    font-size: 0.96rem;
+    color: var(--dark);
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+.snap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+}
+
+.snap-tag {
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.38rem 0.9rem;
+    border-radius: 100px;
+    border: 1.5px solid rgba(232, 80, 26, 0.28);
+    color: var(--orange);
+    background: var(--orange-pale);
+}
+
+/* HOW IT WORKS */
+.how-bg {
+    background: linear-gradient(135deg, rgba(232, 80, 26, 0.04) 0%, rgba(201, 64, 16, 0.03) 100%);
+    border: 1px solid rgba(232, 80, 26, 0.08);
+    border-radius: 20px;
+    padding: 3.5rem;
+    margin-top: 2rem;
+}
+
+.how-intro {
+    font-size: 0.96rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.steps::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 23px;
+    bottom: 23px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--orange), rgba(232, 80, 26, 0.08));
+}
+
+.step {
+    display: flex;
+    gap: 1.75rem;
+    padding: 1.35rem 0;
+    position: relative;
+}
+
+.step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--orange);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.step-content {
+    padding-top: 0.45rem;
+}
+
+.step-title {
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+}
+
+.step-desc {
+    font-size: 0.91rem;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* DELIVERABLES */
+.deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 2rem;
+}
+
+.del-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.75rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.del-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 44px rgba(232, 80, 26, 0.09);
+}
+
+.del-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--orange), var(--accent));
+}
+
+.del-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.85rem;
+}
+
+.del-title {
+    font-weight: 600;
+    font-size: 0.96rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.del-desc {
+    font-size: 0.86rem;
+    color: var(--gray);
+    line-height: 1.65;
+    font-weight: 300;
+}
+
+/* INVESTMENT */
+.invest-wrap {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 1.75rem;
+    margin-top: 2rem;
+    align-items: start;
+}
+
+.invest-card {
+    background: var(--white);
+    border: 1.5px solid rgba(232, 80, 26, 0.18);
+    border-radius: 20px;
+    padding: 2.5rem 2.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.invest-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--orange), var(--accent));
+}
+
+.invest-eyebrow {
+    font-size: 0.69rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.6rem;
+}
+
+.invest-amount {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: 5.5rem;
+    line-height: 1;
+    color: var(--dark);
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.invest-amount sup {
+    font-size: 2rem;
+    margin-top: 0.8rem;
+    color: var(--orange);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+}
+
+.invest-note {
+    font-size: 0.88rem;
+    color: var(--gray);
+    margin-bottom: 1.75rem;
+    line-height: 1.65;
+    font-weight: 300;
+}
+
+.invest-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.invest-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    color: var(--dark);
+    line-height: 1.5;
+}
+
+.invest-items li::before {
+    content: '✓';
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: rgba(232, 80, 26, 0.1);
+    color: var(--orange);
+    font-size: 0.64rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.invest-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.meta-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1.35rem 1.5rem;
+}
+
+.meta-label {
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.4rem;
+}
+
+.meta-value {
+    font-weight: 600;
+    font-size: 0.96rem;
+    color: var(--dark);
+    line-height: 1.4;
+}
+
+.meta-sub {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin-top: 0.2rem;
+    font-weight: 300;
+}
+
+/* CTA */
+.cta-section {
+    background: var(--dark);
+    color: white;
+    padding: 7rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 55% 60% at 15% 50%, rgba(232, 80, 26, 0.16) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 60% at 85% 50%, rgba(201, 64, 16, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.cta-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 6.5vw, 6rem);
+    line-height: 1.04;
+    color: white;
+    position: relative;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.022em;
+}
+
+.cta-section h2 em {
+    font-style: italic;
+    color: var(--orange);
+}
+
+.cta-desc {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 430px;
+    margin: 0 auto 2.8rem;
+    line-height: 1.78;
+    position: relative;
+    font-weight: 300;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--orange);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.97rem;
+    padding: 1.05rem 2.3rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.25s;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-cta:hover {
+    background: var(--orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(232, 80, 26, 0.38);
+}
+
+.btn-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.97rem;
+    padding: 1.05rem 2.3rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.btn-cta-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cta-note {
+    font-size: 0.77rem;
+    color: rgba(255, 255, 255, 0.27);
+    margin-top: 2rem;
+    position: relative;
+}
+
+/* FOOTER */
+footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.75rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.96rem;
+    color: rgba(255, 255, 255, 0.42);
+    text-decoration: none;
+}
+
+.footer-logo span {
+    color: var(--orange);
+}
+
+.footer-note {
+    font-size: 0.77rem;
+    color: rgba(255, 255, 255, 0.27);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .section-wrap {
+        padding: 4rem 1.5rem;
+    }
+
+    .snapshot-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .deliverables-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .invest-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .how-bg {
+        padding: 2rem 1.5rem;
+    }
+
+    .cta-section {
+        padding: 5rem 1.5rem;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+}
+
+</style></head><body>< !-- NAV --><nav><a href="#" class="nav-logo">sethz<span>.co</span></a><ul class="nav-links"><li><a href="#snapshot">Snapshot</a></li><li><a href="#build">What We Build</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#investment">Investment</a></li></ul></nav>< !-- HERO --><div class="hero"><div class="hero-bg"></div><div class="hero-dots"></div><div class="hero-tag">A Proposal from Sangeet Seth</div><h1>Your <span class="accent">Niche</span><br>Positioning Skill</h1><p class="hero-for">for <span class="underline-name">Mallika<svg viewBox="0 0 120 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M2,8 C18,5 35,10 52,7 C68,4 85,9 102,6 C110,4 116,7 118,8" stroke="#e8501a" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" /><path d="M1,9.5 C20,8 40,11 60,8.5 C80,6 100,10 119,8.5" stroke="#e8501a" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.4" /></svg></span></p><p class="hero-sub">Built on your frameworks,
+your knowledge docs,
+your voice. Designed to deliver a branded report your clients can act on immediately. Without you in the room. </p><div class="hero-btns"><a href="#snapshot" class="btn-primary">See the proposal →</a><a href="#investment" class="btn-secondary">Jump to investment</a></div><div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div></div><div class="full-divider"></div>< !-- SNAPSHOT --><div class="section-wrap" id="snapshot"><div class="reveal"><div class="section-tag">Step 01</div><h2 class="section-title">Quick <em>Snapshot</em></h2><p class="section-sub">What I heard from our conversation. And what this engagement is really about.</p></div><div class="snapshot-grid"><div class="snap-card reveal"><div class="snap-label">Where you are right now</div><p>You've built Lumi and SNAP, both strong, both proven. But ChatGPT tools leave too much room for user error, thread drift, and confusion. Clients say they love it, but still want <em>you</em>. You want to extract yourself without losing your expertise from the output.</p>
+ </div><div class="snap-card reveal"><div class="snap-label">What you're trying to build</div>
+ <p>A low-priced,
+standalone product,
+"The Obvious Choice",
+where someone answers 10,
+15 questions and receives a beautiful,
+branded niche positioning report. No thread. No confusion. No Mallika required. An easy yes at $67.</p></div><div class="snap-card full reveal"><div class="snap-label">The smart move: validate before automating</div><p>Before committing to a full automated build,
+you want a Claude skill you can run manually with your beta community first. Test the output. See if people love it. Collect real proof. That's exactly the right sequence , and exactly what this engagement delivers.</p>
+ <div class="snap-tags"><span class="snap-tag">Goal: Validate first</span><span class="snap-tag">Audience: Female entrepreneurs</span><span class="snap-tag">Price point: $49-$67 beta</span><span class="snap-tag">Email list: 1,
+600 subscribers</span><span class="snap-tag">30% open rate</span></div></div></div></div><div class="full-divider"></div>< !-- WHAT WE BUILD --><div class="section-wrap" id="build"><div class="reveal"><div class="section-tag">Step 02</div><h2 class="section-title">What We <span class="accent">Build</span></h2><p class="section-sub">One Claude skill. Built to think like you,
+sound like you,
+and deliver like you. Every time,
+without you.</p></div><div class="how-bg reveal"><p class="how-intro">Here's exactly how the skill works. From the moment client answers land in front of you, to the moment they receive their branded report:</p>
+
+<div class="steps"><div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Guided intake: 10 to 15 fixed questions</div><p class="step-desc">The skill opens with a clear,
+warm briefing,
+sets expectations,
+explains what's coming. Then asks each question one by one, in your voice, with the right prompting so even non-writers give strong, usable answers. No drift. No "I don' t know how to answer this."</p>
+ </div></div><div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Framework processing: your full knowledge stack in the engine</div><p class="step-desc">All of your frameworks,
+knowledge docs,
+workbooks,
+and existing bots. Loaded as the intelligence layer. The skill processes every answer through your complete methodology. It doesn't approximate your thinking. It replicates it.</p>
+ </div></div><div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Input summary: reflecting back what they said</div><p class="step-desc">Before the full report,
+the skill generates a clean summary of client inputs. They feel heard. They see themselves reflected back clearly. This alone builds trust in everything that follows. Before they've read a single recommendation.</p>
+ </div></div><div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Branded HTML report,
+delivered and downloadable as PDF</div><p class="step-desc">The final output is a beautiful,
+on-brand HTML report. Personalized header. Snapshot section. Niche positioning options. Messaging direction. Actionable assets,
+Instagram bio,
+LinkedIn headline,
+they can use the same day. Fully downloadable as a PDF they can keep,
+share,
+and refer back to.</p></div></div><div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-title">Your manual beta,
+now powered</div><p class="step-desc">Client fills your Google Form → you paste answers into the skill → it generates the full branded report → you deliver. Even in manual mode,
+prep time drops from 60 minutes to under 5. Every single time. When you're ready to automate, the hard part is already done.</p>
+ </div></div></div></div></div><div class="full-divider"></div>< !-- DELIVERABLES --><div class="section-wrap" id="deliverables"><div class="reveal"><div class="section-tag">Step 03</div><h2 class="section-title">What's <em>Included</em></h2>
+ <p class="section-sub">Everything you need to go from "I have a framework" to "I have a product I can sell from any stage." </p></div><div class="deliverables-grid"><div class="del-card reveal"><div class="del-icon">⚡</div><div class="del-title">The Core Niche Positioning Skill</div><p class="del-desc">Guided intake,
+full framework processing,
+branded HTML report output. Built on everything you have: your knowledge docs,
+your workbooks,
+your existing bots. Your complete methodology,
+baked into a single skill.</p></div><div class="del-card reveal"><div class="del-icon">🎨</div><div class="del-title">On-Brand Report Design+PDF Export</div><p class="del-desc">The HTML output is designed to match your brand,
+colors,
+typography,
+structure. Clients download it as a PDF to keep. When they open it,
+it feels like a premium Mallika Malhotra deliverable,
+not a ChatGPT printout.</p></div><div class="del-card reveal"><div class="del-icon">🎙️</div><div class="del-title">Your Voice,
+Trained In</div><p class="del-desc">The skill doesn't sound like AI. It sounds like you. Your phrases, your directness, your energy. Clients won' t know it's a skill. They' ll think you wrote every word of the output yourself.</p></div><div class="del-card reveal"><div class="del-icon">📋</div><div class="del-title">Kickoff Deep-Dive Call</div><p class="del-desc">Before building a single line,
+we do a focused call,
+walking through your full framework stack,
+your current process,
+your existing docs and bots. I learn how you think. The skill replicates that. Not my thinking. Yours.</p></div><div class="del-card reveal"><div class="del-icon">🔄</div><div class="del-title">Revisions Until You're Genuinely Impressed</div>
+ <p class="del-desc">We don't stop until the output genuinely impresses you. You test it, share feedback, I refine. Because if it doesn' t impress you,
+it won't impress your clients , and that' s the only thing that matters.</p></div><div class="del-card reveal"><div class="del-icon">🎬</div><div class="del-title">Loom Walkthrough on Delivery</div><p class="del-desc">A short recorded walkthrough of how to use the skill with your beta clients,
+how to run it step by step,
+and how to get the most from the output. So you're confident from Day 1 , not figuring it out alone.</p>
+ </div></div></div><div class="full-divider"></div>< !-- INVESTMENT --><div class="section-wrap" id="investment"><div class="reveal"><div class="section-tag">Step 04</div><h2 class="section-title">The <span class="accent">Investment</span></h2><p class="section-sub">One skill. One price. Paid upfront. No surprises,
+no subscriptions,
+no complexity.</p></div><div class="invest-wrap"><div class="invest-card reveal"><div class="invest-eyebrow">Niche Positioning Skill: Complete Build</div><div class="invest-amount"><sup>$</sup>350</div><p class="invest-note">One flat fee. Paid upfront via Wise. Covers everything,
+kickoff call,
+full skill build across all your frameworks and knowledge docs,
+on-brand report design with PDF export,
+voice training,
+and revisions until you're genuinely happy with it.
+ </p><ul class="invest-items"><li>Kickoff deep-dive call included</li><li>All your frameworks and knowledge docs loaded in</li><li>Branded HTML report+PDF download</li><li>Your voice trained into every output</li><li>Revisions until you're genuinely impressed</li>
+ <li>Loom delivery walkthrough</li><li>Your IP,
+your Claude,
+your full ownership</li></ul></div><div class="invest-meta reveal"><div class="meta-card"><div class="meta-label">Payment</div><div class="meta-value">100% upfront via Wise</div><div class="meta-sub">USD. Direct transfer. Clean and simple.</div></div><div class="meta-card"><div class="meta-label">Timeline</div><div class="meta-value">7-10 days from kickoff</div><div class="meta-sub">First draft within 5 days. Final delivery after revisions.</div></div><div class="meta-card"><div class="meta-label">Kickoff call</div><div class="meta-value">May 27th,
+9:30 AM CST</div><div class="meta-sub">Already on the calendar. We start building that day.</div></div><div class="meta-card"><div class="meta-label">Ownership</div><div class="meta-value">100% yours. Always.</div><div class="meta-sub">Built on your Claude. Your IP. Your frameworks. Nothing changes for you regardless of what happens on my end.</div></div></div></div></div>< !-- CTA --><div class="cta-section"><div class="cta-bg"></div><h2>Ready to<br><em>Build This?</em></h2><p class="cta-desc">Reply to confirm and I'll send the invoice so you can proceed with the Wise transfer.
+ Once received,
+May 27th is locked in as your kickoff. Let's build something your clients will love.
+ </p><div class="cta-buttons"><button class="btn-cta" id="confirm-btn">Confirm via email →</button><a href="https://sethz.co" target="_blank" class="btn-cta-ghost">See my work ↗</a></div><p class="cta-note">Personalized for Mallika Malhotra · Prepared by Sangeet Seth · sethz.co</p></div><footer><a href="https://sethz.co" class="footer-logo">sethz<span>.co</span></a><span class="footer-note">Personalized for Mallika Malhotra,
+May 2026 · Prepared by Sangeet Seth · sethz.co</span></footer><script>
+/* Scroll reveal */
+const reveals=document.querySelectorAll('.reveal');
+
+const io=new IntersectionObserver((entries)=> {
+        entries.forEach((entry, i)=> {
+                if (entry.isIntersecting) {
+                    setTimeout(()=> entry.target.classList.add('visible'), i * 70);
+                    io.unobserve(entry.target);
+                }
+            });
+    }
+
+    , {
+    threshold: 0.08
+});
+reveals.forEach(el=> io.observe(el));
+
+/* Gmail compose button */
+document.getElementById('confirm-btn').addEventListener('click', function () {
+        const to='sangeetseth101@gmail.com';
+        const subject=encodeURIComponent("Yes, let's do it , Niche Positioning Skill");
+        const body=encodeURIComponent("Hi Sangeet,\n\nI'm ready to move forward with the Niche Positioning Skill.\n\nPlease send me the invoice so I can proceed with the Wise transfer.\n\nLooking forward to our kickoff on May 27th!\n\nMallika"
+        );
+        window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + subject + '&body=' + body,
+            '_blank'
+        );
+    });
+</script></body></html>
