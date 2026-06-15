@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Companion Proposal - Calvina Nguyen | sethz.co</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #e8501a;
+            --orange-light: #f07040;
+            --orange-pale: #fff0ea;
+            --accent: #c94010;
+            --dark: #18120a;
+            --gray: #5a5550;
+            --light-gray: #999;
+            --bg: #fdf8f5;
+            --white: #ffffff;
+            --card-border: rgba(232, 80, 26, 0.13);
+            --border-soft: rgba(232, 80, 26, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 4rem;
+            background: rgba(253, 248, 245, 0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(232, 80, 26, 0.08);
+        }
+
+        .nav-logo {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--dark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.73rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 9rem 2rem 7rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 55% at 15% 20%, rgba(232, 80, 26, 0.09) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 50% at 85% 85%, rgba(201, 64, 16, 0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(240, 112, 64, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(232, 80, 26, 0.1) 1px, transparent 1px);
+            background-size: 34px 34px;
+            pointer-events: none;
+            opacity: 0.45;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(232, 80, 26, 0.09);
+            border: 1px solid rgba(232, 80, 26, 0.2);
+            color: var(--orange);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.45rem 1.1rem;
+            border-radius: 100px;
+            margin-bottom: 2.5rem;
+            position: relative;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(3.2rem, 8vw, 6.8rem);
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            color: var(--dark);
+            position: relative;
+            animation: fadeUp 0.7s 0.1s ease both;
+            max-width: 950px;
+        }
+
+        .hero h1 .accent {
+            color: var(--orange);
+        }
+
+        .hero-for {
+            font-family: 'Dancing Script', cursive;
+            font-style: normal;
+            font-weight: 600;
+            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            color: var(--orange);
+            margin: 1.3rem 0 2rem;
+            position: relative;
+            animation: fadeUp 0.7s 0.2s ease both;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-for .underline-name {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero-for .underline-name svg {
+            position: absolute;
+            left: -2px;
+            right: -2px;
+            bottom: -10px;
+            width: calc(100% + 4px);
+            height: 12px;
+            overflow: visible;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--gray);
+            max-width: 540px;
+            line-height: 1.78;
+            position: relative;
+            animation: fadeUp 0.7s 0.3s ease both;
+            margin-bottom: 2.8rem;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            animation: fadeUp 0.7s 0.4s ease both;
+        }
+
+        /* scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            pointer-events: none;
+            animation: fadeUp 1s 0.9s ease both;
+            z-index: 1;
+        }
+
+        .hero-scroll span {
+            font-size: 0.63rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--light-gray);
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(to bottom, var(--orange), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+            50% {
+                opacity: 0.35;
+                transform: scaleY(0.65);
+            }
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 0.95rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.25s;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(232, 80, 26, 0.28);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--dark);
+            border: 1.5px solid rgba(26, 18, 10, 0.18);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.92rem;
+            padding: 0.95rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        /* DIVIDER */
+        .full-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(232, 80, 26, 0.14), transparent);
+        }
+
+        /* SECTION WRAPPER */
+        .section-wrap {
+            padding: 7rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            border: 1px solid rgba(232, 80, 26, 0.22);
+            padding: 0.35rem 0.9rem;
+            border-radius: 4px;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.05;
+            color: var(--dark);
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.022em;
+        }
+
+        .section-title .accent {
+            color: var(--orange);
+        }
+
+        .section-title em {
+            font-style: italic;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.8;
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* SNAPSHOT GRID */
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .snap-card {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem 2.2rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .snap-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(232, 80, 26, 0.07);
+        }
+
+        .snap-card.full {
+            grid-column: 1 / -1;
+        }
+
+        .snap-label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.85rem;
+        }
+
+        .snap-card p {
+            font-size: 0.98rem;
+            color: var(--dark);
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        .snap-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+        }
+
+        .snap-tag {
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            border: 1.5px solid rgba(232, 80, 26, 0.28);
+            color: var(--orange);
+            background: var(--orange-pale);
+        }
+
+        /* HOW IT WORKS */
+        .how-bg {
+            background: linear-gradient(135deg, rgba(232, 80, 26, 0.04) 0%, rgba(201, 64, 16, 0.03) 100%);
+            border: 1px solid rgba(232, 80, 26, 0.08);
+            border-radius: 20px;
+            padding: 3.5rem;
+            margin-top: 2rem;
+        }
+
+        .how-intro {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 23px;
+            bottom: 23px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--orange), rgba(232, 80, 26, 0.08));
+        }
+
+        .step {
+            display: flex;
+            gap: 1.75rem;
+            padding: 1.5rem 0;
+            position: relative;
+        }
+
+        .step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--orange);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            padding-top: 0.45rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 0.45rem;
+        }
+
+        .step-desc {
+            font-size: 0.93rem;
+            color: var(--gray);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* DISCLAIMER HIGHLIGHT */
+        .disclaimer-card {
+            margin-top: 2.5rem;
+            background: #fff8f5;
+            border: 1px dashed rgba(232, 80, 26, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .disclaimer-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 0.5rem;
+            background: var(--orange-pale);
+            border-radius: 50%;
+            color: var(--orange);
+            flex-shrink: 0;
+        }
+
+        .disclaimer-text h4 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .disclaimer-text p {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* DELIVERABLES */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .del-card {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem 1.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .del-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 44px rgba(232, 80, 26, 0.09);
+        }
+
+        .del-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--orange), var(--accent));
+        }
+
+        .del-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.95rem;
+        }
+
+        .del-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .del-desc {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* INVESTMENT */
+        .invest-wrap {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .invest-card {
+            background: var(--white);
+            border: 1.5px solid rgba(232, 80, 26, 0.18);
+            border-radius: 20px;
+            padding: 3rem 2.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invest-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--orange), var(--accent));
+        }
+
+        .invest-eyebrow {
+            font-size: 0.69rem;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.7rem;
+        }
+
+        .invest-amount {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            font-size: 5.2rem;
+            line-height: 1;
+            color: var(--dark);
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .invest-amount sup {
+            font-size: 2.2rem;
+            margin-top: 0.6rem;
+            color: var(--orange);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .invest-note {
+            font-size: 0.92rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .invest-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .invest-items li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.92rem;
+            color: var(--dark);
+            line-height: 1.55;
+        }
+
+        .invest-items li::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(232, 80, 26, 0.1);
+            color: var(--orange);
+            font-size: 0.68rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .invest-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .meta-card {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.5rem 1.65rem;
+        }
+
+        .meta-label {
+            font-size: 0.67rem;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.45rem;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .meta-sub {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+            font-weight: 300;
+        }
+
+        /* WORKING BOUNDARIES & TERMS */
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .terms-card {
+            background: var(--white);
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.25s;
+        }
+
+        .terms-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--card-border);
+        }
+
+        .terms-icon {
+            font-size: 1.5rem;
+            color: var(--orange);
+            margin-bottom: 0.85rem;
+        }
+
+        .terms-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+        }
+
+        .terms-desc {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--dark);
+            color: white;
+            padding: 8.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 60% at 15% 50%, rgba(232, 80, 26, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 60% at 85% 50%, rgba(201, 64, 16, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            font-size: clamp(2.8rem, 6.5vw, 5.8rem);
+            line-height: 1.05;
+            color: white;
+            position: relative;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.022em;
+        }
+
+        .cta-section h2 em {
+            font-style: italic;
+            color: var(--orange);
+        }
+
+        .cta-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 580px;
+            margin: 0 auto 3rem;
+            line-height: 1.78;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.98rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.25s;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-cta:hover {
+            background: var(--orange-light);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(232, 80, 26, 0.38);
+        }
+
+        .btn-cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.22);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.98rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .btn-cta-ghost:hover {
+            border-color: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-note {
+            font-size: 0.77rem;
+            color: rgba(255, 255, 255, 0.27);
+            margin-top: 2.5rem;
+            position: relative;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.96rem;
+            color: rgba(255, 255, 255, 0.42);
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-note {
+            font-size: 0.77rem;
+            color: rgba(255, 255, 255, 0.27);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .deliverables-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .terms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-wrap {
+                padding: 4.5rem 1.5rem;
+            }
+
+            .snapshot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .invest-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-bg {
+                padding: 2.2rem 1.5rem;
+            }
+
+            .cta-section {
+                padding: 5.5rem 1.5rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1.25rem;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">sethz<span>.co</span></a>
+        <ul class="nav-links">
+            <li><a href="#snapshot">Opportunity</a></li>
+            <li><a href="#build">What We Build</a></li>
+            <li><a href="#deliverables">Deliverables</a></li>
+            <li><a href="#investment">Investment</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-dots"></div>
+        <div class="hero-tag">A Custom Proposal from Sangeet Seth</div>
+        <h1>Your <span class="accent">Care</span><br>Companion</h1>
+        <p class="hero-for">for <span class="underline-name">Calvina<svg viewBox="0 0 120 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M2,8 C18,5 35,10 52,7 C68,4 85,9 102,6 C110,4 116,7 118,8" stroke="#e8501a" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" /><path d="M1,9.5 C20,8 40,11 60,8.5 C80,6 100,10 119,8.5" stroke="#e8501a" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.4" /></svg></span></p>
+        <p class="hero-sub">A Personalized AI Content Experience for Your Client’s Audience. Designed as an authentic system that empowers users, respects strategy first, and turns trust into guided pathways.</p>
+        <div class="hero-btns">
+            <a href="#snapshot" class="btn-primary">Review proposal →</a>
+            <a href="#investment" class="btn-secondary">Jump to investment</a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </div>
+
+    <div class="full-divider"></div>
+
+    <!-- OPPORTUNITY -->
+    <div class="section-wrap" id="snapshot">
+        <div class="reveal">
+            <div class="section-tag">Step 01</div>
+            <h2 class="section-title">The <em>Opportunity</em></h2>
+            <p class="section-sub">Turning scaled content trust into a structured, highly actionable audience navigation system.</p>
+        </div>
+        <div class="snapshot-grid">
+            <div class="snap-card reveal">
+                <div class="snap-label">The Discovery Friction</div>
+                <p>Your client has already done the hardest part: building trust at scale through high-quality content. However, when an audience member visits seeking help for a specific child-related concern, they must manually sift through a massive content library. This friction causes drop-offs and missed value. This is not a content problem; it is a discovery problem.</p>
+            </div>
+            <div class="snap-card reveal">
+                <div class="snap-label">The Strategy-First Solution</div>
+                <p>Consistent with your values at <strong>Your Brand Spark</strong>, this system prioritizes strategic alignment over raw aesthetics. Instead of building passive dependencies, we create a guided front door that quickly matches intent to your client's existing assets, empowering parents with immediate direction and respect for their situation.</p>
+            </div>
+            <div class="snap-card full reveal">
+                <div class="snap-label">System Positioning & Core Alignment</div>
+                <p>Care Companion transforms the expert's existing library into a conversational, content-led recommendation engine. By guiding parents through structured, warm questions, we identify the exact videos or articles they need. The focus is entirely on discovery and educational alignment, building trust while maintaining a clear non-diagnostic boundaries layout.</p>
+                <div class="snap-tags">
+                    <span class="snap-tag">Client: Calvina Nguyen</span>
+                    <span class="snap-tag">Brand: Your Brand Spark</span>
+                    <span class="snap-tag">Product: Care Companion</span>
+                    <span class="snap-tag">Core Value: Client Empowerment</span>
+                    <span class="snap-tag">Philosophy: Strategy First</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-divider"></div>
+
+    <!-- WHAT WE BUILD -->
+    <div class="section-wrap" id="build">
+        <div class="reveal">
+            <div class="section-tag">Step 02</div>
+            <h2 class="section-title">What is <span class="accent">Care Companion</span></h2>
+            <p class="section-sub">An AI-powered content guidance experience designed to replicate the expert’s recommendation pathway, completely rooted in their own published material.</p>
+        </div>
+        <div class="how-bg reveal">
+            <p class="how-intro">Care Companion functions as a strategic content discovery system, guiding parents through a clear pathway using existing video resources and structured recommendations:</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">1. Content Selection & Ingestion</div>
+                        <p class="step-desc">Up to 75 high-priority approved YouTube videos are selected by your team to represent the primary educational topics and themes.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">2. Knowledge Layer Extraction</div>
+                        <p class="step-desc">Accessible transcripts, captions, and source text from the selected videos are compiled to form the base knowledge layer for the system.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <div class="step-title">3. Semantic Ingestion & Indexing</div>
+                        <p class="step-desc">The extracted text is processed, structured, and indexed, creating a semantic map of the expert's advice and content resources.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <div class="step-title">4. Guided Intake Flow</div>
+                        <p class="step-desc">A parent arrives and answers a short, natural, and guided set of questions about the specific child-related concern they are experiencing.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <div class="step-title">5. Real-Time Index Matching</div>
+                        <p class="step-desc">The system analyzes user responses in real-time, matching their concern against the structured semantic index of the approved library.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">6</div>
+                    <div class="step-content">
+                        <div class="step-title">6. Personalized Video Recommendations</div>
+                        <p class="step-desc">The parent is presented with a personalized roadmap recommending the most relevant existing videos and explaining why they match.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Framing and safety alert -->
+            <div class="disclaimer-card">
+                <div class="disclaimer-icon">⚠️</div>
+                <div class="disclaimer-text">
+                    <h4>Important Product Framing & Scope Safety</h4>
+                    <p>Care Companion is built strictly as a <strong>content discovery and personalization system</strong>, not an unlimited library ingestion archive and not a diagnostic medical AI tool. It does <strong>not</strong> diagnose, prescribe, or provide medical advice. Every output reinforces that Recommendations are strictly educational resources based on existing published materials, prompting parents to consult professionals for clinical concerns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-divider"></div>
+
+    <!-- DELIVERABLES -->
+    <div class="section-wrap" id="deliverables">
+        <div class="reveal">
+            <div class="section-tag">Step 03</div>
+            <h2 class="section-title">Core Build <em>Scope</em></h2>
+            <p class="section-sub">A comprehensive, end-to-end implementation designed to bring the Care Companion experience to life for your client.</p>
+        </div>
+        <div class="deliverables-grid">
+            <div class="del-card reveal">
+                <div class="del-icon">💬</div>
+                <div class="del-title">Conversational Intake Flow</div>
+                <p class="del-desc">A warm, structured, and responsive question flow designed to guide parents through concerns comfortably, keeping them focused and supported.</p>
+            </div>
+            <div class="del-card reveal">
+                <div class="del-icon">🧠</div>
+                <div class="del-title">AI Content Matching Layer</div>
+                <p class="del-desc">Semantic association logic that maps parental concerns directly to the pre-approved library of up to 75 approved YouTube videos, recommending matching resources with high precision.</p>
+            </div>
+            <div class="del-card reveal">
+                <div class="del-icon">🗺️</div>
+                <div class="del-title">Personalized Roadmap Panel</div>
+                <p class="del-desc">A beautiful summary dashboard output displaying specific resources, sequences of discovery, and customized explanations for recommendations.</p>
+            </div>
+            <div class="del-card reveal">
+                <div class="del-icon">🎨</div>
+                <div class="del-title">Branded Interface Design</div>
+                <p class="del-desc">An editorial-premium responsive interface aligned visually with the target brand guidelines, optimized for speed and engagement.</p>
+            </div>
+            <div class="del-card reveal">
+                <div class="del-icon">🛡️</div>
+                <div class="del-title">Disclaimer & Safety Framing</div>
+                <p class="del-desc">Integration of contextually appropriate informational disclaimers at critical points, ensuring clear regulatory and health positioning.</p>
+            </div>
+            <div class="del-card reveal">
+                <div class="del-icon">🚀</div>
+                <div class="del-title">Setup & Handoff Handoff</div>
+                <p class="del-desc">Configuring for launch, connecting up to 75 approved videos, testing flow, refining recommendation logic, and preparing the final deployment-ready product.</p>
+            </div>
+        </div>
+
+        <!-- Content Volume Bounds -->
+        <div class="snapshot-grid" style="margin-top: 2.5rem;">
+            <div class="snap-card reveal">
+                <div class="snap-label">Content Ingestion Scope</div>
+                <p>The Core Build includes initial indexing, structuring, and recommendation setup for up to 75 approved YouTube videos. The selected videos should represent the highest-priority content themes for the intended audience and should be provided with accessible transcripts, captions, or source material where required.</p>
+            </div>
+            <div class="snap-card reveal">
+                <div class="snap-label">Additional Content Volume</div>
+                <p>Any additional video ingestion, transcript cleanup, retagging, taxonomy expansion, or library growth beyond the initial approved 75-video set will be treated as additional scope and quoted separately.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-divider"></div>
+
+    <!-- INVESTMENT -->
+    <div class="section-wrap" id="investment">
+        <div class="reveal">
+            <div class="section-tag">Step 04</div>
+            <h2 class="section-title">The <span class="accent">Investment</span></h2>
+            <p class="section-sub">Commercially precise structure with clear scope limits and straightforward milestone delivery.</p>
+        </div>
+        <div class="invest-wrap">
+            <div class="invest-card reveal">
+                <div class="invest-eyebrow">Care Companion: Core Build</div>
+                <div class="invest-amount"><sup>$</sup>4,500</div>
+                <p class="invest-note">One-time investment covering the design, intelligence modeling, disclaimer integration, testing, and deployment setup of the primary experience.</p>
+                <ul class="invest-items">
+                    <li>Conversational question matching architecture</li>
+                    <li>Semantic index of up to 75 approved YouTube videos</li>
+                    <li>Personalized output roadmap screen with dynamic summaries</li>
+                    <li>Tailored, premium responsive interface wrapper</li>
+                    <li>Full disclaimer framing & safety guardrails configuration</li>
+                    <li>E2E system validation, deployment staging, and handoff</li>
+                    <li>Up to 2 rounds of refinements per development milestone</li>
+                </ul>
+            </div>
+            <div class="invest-meta reveal">
+                <div class="meta-card">
+                    <div class="meta-label">Payment Milestones</div>
+                    <div class="meta-value">50% Upfront / 50% Prototype</div>
+                    <div class="meta-sub">50% upfront to initiate construction; 50% upon delivery of first approved functional prototype.</div>
+                </div>
+                <div class="meta-card">
+                    <div class="meta-label">Estimated Timeline</div>
+                    <div class="meta-value">3 Weeks to Completion</div>
+                    <div class="meta-sub">From kickoff, contingent on timely access to client library, references, and milestones feedback.</div>
+                </div>
+                <div class="meta-card">
+                    <div class="meta-label">Optional Support Retainer</div>
+                    <div class="meta-value">$500 / month</div>
+                    <div class="meta-sub">Optional. Ongoing ingestion of new client content, light matching tuning, copy updates, and framework maintenance.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-divider"></div>
+
+    <!-- WORKING BOUNDARIES & TERMS -->
+    <div class="section-wrap" id="terms">
+        <div class="reveal">
+            <div class="section-tag">Step 05</div>
+            <h2 class="section-title">Working <em>Boundaries</em></h2>
+            <p class="section-sub">Standard commercial expectations and intellectual property guidelines designed for professional safety.</p>
+        </div>
+        <div class="terms-grid">
+            <div class="terms-card reveal">
+                <div class="terms-icon">⚖️</div>
+                <div class="terms-title">Ownership & IP</div>
+                <p class="terms-desc">Upon final project milestone payment, you receive rights to the completed custom deliverables. The underlying engineering, reusable system engines, strategies, and methodologies remain Sangeet Seth's IP.</p>
+            </div>
+            <div class="terms-card reveal">
+                <div class="terms-icon">✍️</div>
+                <div class="terms-title">Content Responsibility</div>
+                <p class="terms-desc">Calvina and/or the client team are responsible for review and absolute accuracy of all medical-educational reference materials. Sangeet Seth builds the logic layer and product presentation around these inputs.</p>
+            </div>
+            <div class="terms-card reveal">
+                <div class="terms-icon">🚧</div>
+                <div class="terms-title">Scope Boundaries</div>
+                <p class="terms-desc">Milestones include up to two consolidation revision rounds. Additional features (analytics layers, translation bundles, new integrations) start at $500+ and require separate scoping and approval.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="cta-bg"></div>
+        <h2>Ready to<br><em>Begin?</em></h2>
+        <p class="cta-desc">Care Companion turns passive video and resource libraries into structured, personalized paths—providing your client's audience with a modern, high-value front door that validates their search before they consume. Let's make their content library work for them.</p>
+        <div class="cta-buttons">
+            <button class="btn-cta" id="confirm-btn">Accept proposal & email kickoff →</button>
+            <a href="https://sethz.co" target="_blank" class="btn-cta-ghost">My website ↗</a>
+        </div>
+        <p class="cta-note">Personalized for Calvina Nguyen · Prepared by Sangeet Seth · sethz.co</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="https://sethz.co" class="footer-logo">sethz<span>.co</span></a>
+        <span class="footer-note">Personalized for Calvina Nguyen, June 2026 · Prepared by Sangeet Seth · sethz.co</span>
+    </footer>
+
+    <script>
+        /* Scroll reveal */
+        const reveals = document.querySelectorAll('.reveal');
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 70);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.08
+        });
+        reveals.forEach(el => io.observe(el));
+
+        /* Gmail compose button */
+        document.getElementById('confirm-btn').addEventListener('click', function () {
+            const to = 'sangeetseth101@gmail.com';
+            const subject = encodeURIComponent("Yes, let's do it - Care Companion Project");
+            const body = encodeURIComponent("Hi Sangeet,\n\nI have reviewed the proposal and I'm ready to move forward with the Care Companion project for Your Brand Spark.\n\nPlease send over the initial invoice for the 50% upfront payment milestone so we can lock in the kickoff and content structuring phase.\n\nBest regards,\nCalvina Nguyen\nYour Brand Spark"
+            );
+            window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + subject + '&body=' + body,
+                '_blank'
+            );
+        });
+    </script>
+</body>
+</html>
